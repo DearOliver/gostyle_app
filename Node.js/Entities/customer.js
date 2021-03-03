@@ -1,7 +1,7 @@
-class user {
+class customer {
     constructor()
     {
-        
+
     }
     constructor(id, first_name, last_name, mail, password, birth_date, creation_date)
     {
