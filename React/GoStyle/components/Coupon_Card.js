@@ -8,10 +8,10 @@ import { Text, View } from './Themed';
 
 export default function Coupon_Card({ coupon }) {
   return (
-    <View>
-      <Text style={styles.title}>{ coupon.code }</Text>
-      <Text>{ coupon.label }</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+    <View lightColor={true} style={styles.container}>
+      <Text style={styles.label}>{ coupon.label }</Text>
+      <Text style={styles.date}>Starts on { coupon.start_date }</Text>
+      <View style={styles.separator} lightColor="rgba(255,255,255,0.1)" darkColor="rgba(255,255,255,0.1)" />
     </View>
   );
 }
@@ -19,12 +19,16 @@ export default function Coupon_Card({ coupon }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  title: {
+  label: {
     fontSize: 20,
     marginVertical: 10,
     fontWeight: 'bold',
+  },
+  date: {
+    fontSize: 16,
   },
   separator: {
     marginVertical: 20,

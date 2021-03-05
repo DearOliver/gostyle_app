@@ -1,6 +1,7 @@
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
+import { StatusBar  } from 'expo-status-bar'
 import { ColorSchemeName } from 'react-native';
 
 import NotFoundScreen from '../screens/NotFoundScreen';
@@ -13,7 +14,9 @@ export default function Navigation({ colorScheme }) {
   return (
     <NavigationContainer
       linking={LinkingConfiguration}
-      theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+      // theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
+    >
+    <StatusBar style="dark"/>
       <RootNavigator />
     </NavigationContainer>
   );

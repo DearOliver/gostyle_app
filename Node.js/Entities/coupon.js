@@ -1,4 +1,11 @@
 class coupon {
+
+    id
+    label
+    code
+    start_date
+    end_date
+
     constructor(id, label, code, start_date, end_date)
     {
         this.id = id;

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
+import { withSafeAreaInsets } from 'react-native-safe-area-context';
 import Coupon_Card from '../components/Coupon_Card'
 
 import { Text, View, ScrollView } from '../components/Themed';
@@ -33,7 +34,7 @@ export default function HomePage() {
   });
 
   return (
-    <ScrollView>
+    <ScrollView lightColor={true} lightColor="#eee" darkColor="rgba(255,255,255,0.1)">
       { current_coupons_views }
     </ScrollView>
   );
@@ -41,8 +42,5 @@ export default function HomePage() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });
