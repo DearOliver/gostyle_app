@@ -2,9 +2,8 @@
 //   console.log(url)
 // })
 import express_server from "./config/express_server.js";
-// import routes from "./routes/index.js";
 import * as db from "./queries/customerQueries.js";
-import customers from "./routes/index.js";
+import customers from "./routes/customers_route.js";
 
 const PORT = process.env.PORT || 5003;
 express_server.listen(PORT, () => {
