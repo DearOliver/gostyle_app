@@ -8,7 +8,6 @@ import useColorScheme from '../hooks/useColorScheme';
 import HomePage from '../screens/HomePage';
 import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
-import { BottomTabParamList, TabOneParamList, TabTwoParamList, HomePageParamList } from '../types';
 
 const BottomTab = createBottomTabNavigator();
 
@@ -60,7 +59,7 @@ function TabOneNavigator() {
       <TabOneStack.Screen
         name="TabOneScreen"
         component={TabOneScreen}
-        options={{ headerTitle: 'Tab One Title' }}
+        options={{ headerTitle: 'GoStyle' }}
       />
     </TabOneStack.Navigator>
   );
@@ -74,7 +73,7 @@ function TabTwoNavigator() {
       <TabTwoStack.Screen
         name="TabTwoScreen"
         component={TabTwoScreen}
-        options={{ headerTitle: 'Tab Two Title' }}
+        options={{ headerTitle: 'GoStyle' }}
       />
     </TabTwoStack.Navigator>
   );
@@ -88,7 +87,7 @@ function HomePageNavigator() {
       <HomePageStack.Screen
         name="HomePage"
         component={HomePage}
-        options={{ headerTitle: 'Home Page' }}
+        options={{ headerTitle: 'GoStyle' }}
       />
     </HomePageStack.Navigator>
   );
