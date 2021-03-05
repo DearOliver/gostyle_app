@@ -1,29 +1,28 @@
 import db from "../config/Postgres/db.js"
 
 //Get
-export const getAllUsers = (request, response) => {
-    db('SELECT * FROM customer ORDER BY id ASC', (error, results) => {
+export const getAllCustomers = (request, response) => {
+    db('SELECT * FROM customer ORDER BY id ASC', [],(error, results) => {
         if (error) {
             throw error
         }
-        console.log(results)
+        console.log(results.rows)
         response.status(200).json(results.rows)
     })
 }
-
-export const getUserById = (request, response) => {
+export const getCustomerById = (request, response) => {
     const id = request.params.id;
     db('SELECT * FROM customer WHERE id = $1', [id], (error, results) => {
         if (error) {
             throw error
         }
-        console.log(results)
+        console.log(results.rows)
         response.status(200).json(results.rows)
     })
 }
 
 //Post
-export const updateUser = (request, response) => {
+export const updateCustomer = (request, response) => {
     const id = request.params.id
     const {first_name, last_name, mail, password, birth_date} = request.body
     db(
