@@ -51,7 +51,7 @@ export default function Coupon_Card({ coupon }) {
       <Text style={styles.label}>{ coupon.label }</Text>
       <Text style={styles.description}>Usable online and in participating stores</Text>
       <Text style={styles.description}>Ends on { coupon.start_date }</Text>
-      <View style={styles.separator} lightColor="rgba(255,255,255,0.1)" darkColor="rgba(255,255,255,0.1)" />
+      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
     </View>
   );
 }
