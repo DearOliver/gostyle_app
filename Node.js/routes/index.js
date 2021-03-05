@@ -16,5 +16,8 @@ router.get('/',(req, res)=>{
 router.get('/:id',(req, res)=>{
     return db.getCustomerById(req,res)
 })
+router.get('/:id/coupons',(req, res)=>{
+    return db.getCustomersCoupons(req,res)
+})
 
 export default router

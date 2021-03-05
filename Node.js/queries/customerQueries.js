@@ -20,6 +20,16 @@ export const getCustomerById = (request, response) => {
         response.status(200).json(results.rows)
     })
 }
+export const getCustomersCoupons = (request, response) => {
+    const id = request.params.id;
+    db('SELECT * from coupon c join customer_coupon cc on c.id = cc.id_coupon WHERE cc.id_customer = $1', [id], (error, results) => {
+        if (error) {
+            throw error
+        }
+        console.log(results.rows)
+        response.status(200).json(results.rows)
+    })
+}
 
 //Post
 export const updateCustomer = (request, response) => {
