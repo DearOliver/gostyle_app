@@ -1,8 +1,9 @@
 class customer_coupon {
-    constructor()
-    {
 
-    }
+    id_customer
+    id_coupon
+    used
+
     constructor(id_customer, id_coupon, used)
     {
         this.id_customer = id_customer;

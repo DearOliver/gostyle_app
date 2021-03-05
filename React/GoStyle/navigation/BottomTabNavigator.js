@@ -5,19 +5,19 @@ import * as React from 'react';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
+import HomePage from '../screens/HomePage';
 import TabOneScreen from '../screens/TabOneScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
-import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
+import MyList from '../screens/MyList';
 
-const BottomTab = createBottomTabNavigator<BottomTabParamList>();
+
+const BottomTab = createBottomTabNavigator();
 
 export default function BottomTabNavigator() {
-  const colorScheme = useColorScheme();
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
-      tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
+      initialRouteName="HomePage"
+      tabBarOptions={{ activeTintColor: Colors["light"].tint }}>
       <BottomTab.Screen
         name="TabOne"
         component={TabOneNavigator}
@@ -26,8 +26,15 @@ export default function BottomTabNavigator() {
         }}
       />
       <BottomTab.Screen
-        name="TabTwo"
-        component={TabTwoNavigator}
+        name="My list"
+        component={MyListNavigator}
+        options={{
+          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+        }}
+      />
+      <BottomTab.Screen
+        name="HomePage"
+        component={HomePageNavigator}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
         }}
@@ -38,13 +45,13 @@ export default function BottomTabNavigator() {
 
 // You can explore the built-in icon families and icons on the web at:
 // https://icons.expo.fyi/
-function TabBarIcon(props: { name: React.ComponentProps<typeof Ionicons>['name']; color: string }) {
+function TabBarIcon(props) {
   return <Ionicons size={30} style={{ marginBottom: -3 }} {...props} />;
 }
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
-const TabOneStack = createStackNavigator<TabOneParamList>();
+const TabOneStack = createStackNavigator();
 
 function TabOneNavigator() {
   return (
@@ -52,22 +59,36 @@ function TabOneNavigator() {
       <TabOneStack.Screen
         name="TabOneScreen"
         component={TabOneScreen}
-        options={{ headerTitle: 'Tab One Title' }}
+        options={{ headerTitle: 'GoStyle' }}
       />
     </TabOneStack.Navigator>
   );
 }
 
-const TabTwoStack = createStackNavigator<TabTwoParamList>();
+const MyListStack = createStackNavigator();
 
-function TabTwoNavigator() {
+function MyListNavigator() {
   return (
-    <TabTwoStack.Navigator>
-      <TabTwoStack.Screen
-        name="TabTwoScreen"
-        component={TabTwoScreen}
-        options={{ headerTitle: 'Tab Two Title' }}
+    <MyListStack.Navigator>
+      <MyListStack.Screen
+        name="MyList"
+        component={MyList}
+        options={{ headerTitle: 'My list' }}
       />
-    </TabTwoStack.Navigator>
+    </MyListStack.Navigator>
+  );
+}
+
+const HomePageStack = createStackNavigator();
+
+function HomePageNavigator() {
+  return (
+    <HomePageStack.Navigator>
+      <HomePageStack.Screen
+        name="HomePage"
+        component={HomePage}
+        options={{ headerTitle: 'GoStyle' }}
+      />
+    </HomePageStack.Navigator>
   );
 }
