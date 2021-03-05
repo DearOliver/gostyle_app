@@ -8,8 +8,8 @@ function db_config(){
         "PGPASSWORD" : "EpsiWis2018!",
         "PGPORT" : 5432
     };
-};
+}
 
 //Variable export
 
-module.exports = { db_config };
+export default db_config();

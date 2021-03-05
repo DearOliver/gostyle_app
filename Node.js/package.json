@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
+  "main": "main.js",
   "scripts": {
-    "start": "clear; nodemon --exec babel-node ./main.js"
+    "start": "nodemon --exec babel-node ./main.js"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
@@ -18,5 +19,8 @@
     "@babel/preset-env": "^7.13.9",
     "babel-loader": "^8.2.2",
     "nodemon": "^2.0.7"
+  },
+  "babel": {
+    "presets": ["@babel/preset-env"]
   }
 }

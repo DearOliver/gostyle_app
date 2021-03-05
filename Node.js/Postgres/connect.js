@@ -1,7 +1,8 @@
-const config = require("./config");
-const { Client } = require('pg');
 
-let db_config = config.db_config();
+import config from "./config.js"
+import pg from "pg"
+const {Client} = pg;
+let db_config = config;
 
 const client = new Client({
   user: db_config['PGUSER'],
@@ -17,4 +18,4 @@ function connection()
     return client;
 }
 
-module.exports = { connection };
+export default connection();
