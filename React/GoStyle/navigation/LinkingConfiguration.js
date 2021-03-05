@@ -11,9 +11,9 @@ export default {
               TabOneScreen: 'one',
             },
           },
-          TabTwo: {
+          MyList: {
             screens: {
-              TabTwoScreen: 'two',
+              MyListScreen: 'MyList',
             },
           },
           HomePage: {

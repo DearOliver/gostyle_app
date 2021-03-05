@@ -38,42 +38,56 @@ function get_type(coupon){
 
 export default function Coupon_Card({ coupon }) {
   let coupon_type = get_type(coupon);
+
+  let styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+      width: '100%'
+    },
+    card: {
+      flex: 1,
+      alignItems: 'flex-start',
+      padding: 20,
+      justifyContent: 'center',
+      backgroundColor: '#FFFFFF',
+      borderBottomColor: coupon_type.color,
+      width: '90%',
+      height: 150,
+      borderBottomWidth: 7,
+      marginVertical: 15,
+      borderRadius: 3,
+      shadowColor: '#000000',
+      shadowOffset: {
+          width: 1,
+          height: 0
+      },
+      shadowOpacity: 0.2
+    },
+    label: {
+      fontSize: 20,
+      marginVertical: 10,
+      fontWeight: 'bold',
+    },
+    description: {
+      fontSize: 11,
+      fontStyle: 'italic',
+      marginVertical: 5,
+    },
+    date: {
+      fontSize: 16,
+      fontStyle: 'italic',
+    },
+  });
+
   return (
     <View lightColor={true} style={styles.container}>
-      <Text style={styles.label}>{ coupon.label }</Text>
-      <Text style={styles.date}>Ends on { coupon.start_date }</Text>
-      <Text style={styles.description}>Utilisable sur le magasin en ligne et dans tous les magasins participants</Text>
-      <View style={{ height: 6, width: '100%', backgroundColor: coupon_type.color, margin: 10}}></View>
-      <View style={styles.separator} lightColor="rgba(255,255,255,0.1)" darkColor="rgba(255,255,255,0.1)" />
+      <View style={styles.card}>
+        <Text style={styles.label}>{ coupon.label }</Text>
+        <Text style={styles.date}>Ends on { coupon.start_date }</Text>
+        <Text style={styles.description}>Utilisable sur le magasin en ligne et dans tous les magasins participants</Text>
+      </View>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '90%'
-  },
-  label: {
-    fontSize: 20,
-    marginVertical: 10,
-    fontWeight: 'bold',
-  },
-  description: {
-    fontSize: 11,
-    fontStyle: 'italic',
-    marginVertical: 5,
-    textAlign: 'center',
-  },
-  date: {
-    fontSize: 16,
-    fontStyle: 'italic',
-  },
-  separator: {
-    marginVertical: 15,
-    height: 1,
-    width: '80%',
-  },
-});
