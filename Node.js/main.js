@@ -1,4 +1,4 @@
-const connect = require("./Node.js/Postgres/connect.js");
+const connect = require("./Postgres/connect.js");
 const QRCode = require('qrcode');
  
 // QRCode.toDataURL('Romain', function (err, url) {
