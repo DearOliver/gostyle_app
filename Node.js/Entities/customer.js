@@ -1,8 +1,13 @@
 class customer {
-    constructor()
-    {
 
-    }
+    id
+    first_name
+    last_name
+    mail
+    password
+    birth_date
+    creation_date
+
     constructor(id, first_name, last_name, mail, password, birth_date, creation_date)
     {
         this.id = id;
