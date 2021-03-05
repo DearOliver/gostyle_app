@@ -13,11 +13,15 @@ router.get('/',(req, res)=>{
     return db.getAllCustomers(req,res)
 })
 
-router.get('/:id',(req, res)=>{
-    return db.getCustomerById(req,res)
-})
 router.get('/:id/coupons',(req, res)=>{
     return db.getCustomersCoupons(req,res)
 })
 
+router.put('/:id',(req, res)=>{
+    return db.updateCustomer(req,res)
+})
+
+router.post('/login',(req, res)=>{
+    return db.authUser(req,res)
+})
 export default router
