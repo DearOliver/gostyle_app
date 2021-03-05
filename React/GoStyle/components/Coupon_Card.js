@@ -20,37 +20,30 @@ class type {
   }
 }
 
-// let t1 = new type(0, 'Rabais', '#4355d4')
-// let t2 = new type(1, 'Réduction', '#749eff')
-// let t3 = new type(2, 'Pack', '#c6ceff')
+let t1 = new type(0, 'Rabais', '#4355d4')
+let t2 = new type(1, 'Réduction', '#749eff')
+let t3 = new type(2, 'Pack', '#c6ceff')
 
-// let types = [t1, t2, t3]
+let types = [t1, t2, t3]
 
-// function get_type(coupon){
-//   return types.map(x => {
-//     let is_type_found = false;
-//     while (is_type_found == false){
-//       if (x.id == coupon.id_type){
-//         type_found = x;
-//         is_type_found = true;
-//       }
-//       else{
-//         type_found = null;
-//       }
-//     }
-//     return type_found;
-//   });
-// }
+function get_type(coupon){
+  let type_found = null;
+  types.forEach(t => {
+    if(coupon.id_type == t.id){
+      type_found = t;
+    }
+  });
+  return type_found;
+}
 
 export default function Coupon_Card({ coupon }) {
-  // let type_coupon = get_type(coupon)
-  // console.log(type_coupon.label)
-
+  let coupon_type = get_type(coupon);
   return (
     <View lightColor={true} style={styles.container}>
       <Text style={styles.label}>{ coupon.label }</Text>
-      <Text style={styles.description}>Usable online and in participating stores</Text>
-      <Text style={styles.description}>Ends on { coupon.start_date }</Text>
+      <Text style={styles.date}>Ends on { coupon.start_date }</Text>
+      <Text style={styles.description}>Utilisable sur le magasin en ligne et dans tous les magasins participants</Text>
+      <View style={{ height: 6, width: '100%', backgroundColor: coupon_type.color, margin: 10}}></View>
       <View style={styles.separator} lightColor="rgba(255,255,255,0.1)" darkColor="rgba(255,255,255,0.1)" />
     </View>
   );
@@ -61,7 +54,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    width: '80%'
+    width: '90%'
   },
   label: {
     fontSize: 20,
@@ -69,10 +62,17 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   description: {
+    fontSize: 11,
+    fontStyle: 'italic',
+    marginVertical: 5,
+    textAlign: 'center',
+  },
+  date: {
     fontSize: 16,
+    fontStyle: 'italic',
   },
   separator: {
-    marginVertical: 20,
+    marginVertical: 15,
     height: 1,
     width: '80%',
   },

@@ -20,14 +20,14 @@ class coupon {
 
 export default function HomePage() {
 
-  let c1 = new coupon('1234', '-203€ sur toutes les culottes', 'CUL2021XM', '06/03/2021', '23/04/2021');
-  let c2 = new coupon('1265', '-50% sur votre commande', '50POURCOM', '08/06/2021', '12/08/2021');
-  let c3 = new coupon('6934', '42 voitures achetées 1 offerte', 'AFFVOIT42', '01/02/2020', '26/04/2023');
-  let c4 = new coupon('6634', '-10€ sur toutes les culottes', 'CUMP21XM', '06/03/2021', '23/04/2021');
-  let c5 = new coupon('1115', '-20% sur votre commande', '50LLLLCOM', '08/06/2021', '12/08/2021');
-  let c6 = new coupon('6664', '23 voitures achetées 2 offerte', 'ABHGBT42', '01/02/2020', '26/04/2023');
+  let c1 = new coupon('1234', '-203€ sur toutes les culottes', 'CUL2021XM', '06/03/2021', '23/04/2021', 0);
+  let c2 = new coupon('1265', '-50% sur votre commande', '50POURCOM', '08/06/2021', '12/08/2021', 1);
+  let c3 = new coupon('6934', '42 voitures achetées 1 offerte', 'AFFVOIT42', '01/02/2020', '26/04/2023', 2);
+  let c4 = new coupon('6634', '-10€ sur toutes les culottes', 'CUMP21XM', '06/03/2021', '23/04/2021', 0);
+  let c5 = new coupon('1115', '-20% sur votre commande', '50LLLLCOM', '08/06/2021', '12/08/2021', 1);
+  let c6 = new coupon('6664', '23 voitures achetées 2 offerte', 'ABHGBT42', '01/02/2020', '26/04/2023', 2);
 
-  let tableau = [c1, c2, c3, c4, c5, c6];
+  let tableau = [c1, c6, c4, c2, c3, c5];
 
   let current_coupons_views = tableau.map(x => {
     return (
