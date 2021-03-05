@@ -1,4 +1,4 @@
-class coupon {
+const Coupon = class coupon {
     constructor()
     {
 
