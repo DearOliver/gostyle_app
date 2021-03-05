@@ -1,3 +1,4 @@
+  
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
 import { withSafeAreaInsets } from 'react-native-safe-area-context';
@@ -6,13 +7,14 @@ import Coupon_Card from '../components/Coupon_Card'
 import { Text, View, ScrollView } from '../components/Themed';
 
 class coupon {
-  constructor(id, label, code, start_date, end_date)
+  constructor(id, label, code, start_date, end_date, id_type)
   {
       this.id = id;
       this.label = label;
       this.code = code;
       this.start_date = start_date;
       this.end_date = end_date;
+      this.id_type = id_type;
   }
 }
 
@@ -34,13 +36,24 @@ export default function HomePage() {
   });
 
   return (
-    <ScrollView lightColor={true} lightColor="#eee" darkColor="rgba(255,255,255,0.1)">
-      { current_coupons_views }
+    <ScrollView style={styles.scroll} lightColor={true} lightColor="#eee" darkColor="rgba(255,255,255,0.1)">
+      <View style={styles.container}>
+        { current_coupons_views }
+      </View>
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+  scroll: {
+    display: 'flex',
+    flex: 1,
+    width: '100%',
+  },
   container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
   },
 });
