@@ -16,6 +16,11 @@ export default {
               TabTwoScreen: 'two',
             },
           },
+          HomePage: {
+            screens: {
+              HomePageScreen: 'home',
+            }
+          },
         },
       },
       NotFound: '*',
