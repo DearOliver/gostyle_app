@@ -77,6 +77,7 @@ export const deleteCustomer = (request, response) => {
             throw error
         }
         console.log(results.rows)
+        const r = json(results.rows)
         response.status(200).json(results.rows)
     })
 }
