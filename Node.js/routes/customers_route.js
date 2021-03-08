@@ -30,6 +30,6 @@ router.post('/login',(req, res)=>{
 })
 
 router.post('/:id/coupons/add',(req, res)=>{
-    return db.getCustomersCoupons(req,res)
+    return db.addCoupon(req,res)
 })
 export default router

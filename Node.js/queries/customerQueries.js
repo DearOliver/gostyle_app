@@ -62,7 +62,7 @@ export const authUser = (request, response) => {
 export const addCoupon = (request, response) => {
     const {id} = request.params
     const {id_coupon} = request.body
-    db('SELECT * FROM customer WHERE mail = $1 AND password = $2', [login,password],(error, results) => {
+    db('INSERT INTO customer_coupon (id_customer, id_coupon, used) values ($1,$2,0)', [id,id_coupon],(error, results) => {
         if (error) {
             throw error
         }
