@@ -1,4 +1,4 @@
-  
+
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
 import { withSafeAreaInsets } from 'react-native-safe-area-context';
@@ -31,7 +31,7 @@ export default function HomePage() {
 
   let current_coupons_views = tableau.map(x => {
     return (
-      <Coupon_Card coupon={x}/>
+      <Coupon_Card key={x.id} coupon={x}/>
     );
   });
 
