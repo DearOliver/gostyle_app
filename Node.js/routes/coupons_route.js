@@ -18,5 +18,5 @@ router.get('/:coupon/id',(req, res)=>{
 
 // list de coupon
 router.get('/:id/coupon/list',(req, res)=> {
-    return db.GetCouponById(req, res)
+    return db.GetlistCouponById(req, res)
 })
