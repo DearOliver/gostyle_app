@@ -6,7 +6,7 @@ import * as React from 'react';
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import HomePage from '../screens/HomePage';
-import TabOneScreen from '../screens/TabOneScreen';
+import ScanPage from '../screens/ScanPage';
 import MyList from '../screens/MyList';
 
 
@@ -16,27 +16,30 @@ export default function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="HomePage"
+      initialRouteName="Actus"
       tabBarOptions={{ activeTintColor: Colors["light"].tint }}>
       <BottomTab.Screen
-        name="TabOne"
-        component={TabOneNavigator}
-        options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
-        }}
-      />
-      <BottomTab.Screen
-        name="My list"
-        component={MyListNavigator}
-        options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
-        }}
-      />
-      <BottomTab.Screen
-        name="HomePage"
+        name="Actus"
         component={HomePageNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="pricetag-outline" color={color} />,
+          tabBarLabel:() => {return null},
+        }}
+      />
+      <BottomTab.Screen
+        name="Scan"
+        component={ScanPageNavigator}
+        options={{
+          tabBarIcon: ({ color }) => <TabBarIcon name="scan" color={color} />,
+          tabBarLabel:() => {return null},
+        }}
+      />
+      <BottomTab.Screen
+        name="Mes coupons"
+        component={MyListNavigator}
+        options={{
+          tabBarIcon: ({ color }) => <TabBarIcon name="list" color={color} />,
+          tabBarLabel:() => {return null},
         }}
       />
     </BottomTab.Navigator>
@@ -51,17 +54,17 @@ function TabBarIcon(props) {
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
-const TabOneStack = createStackNavigator();
+const ScanPageStack = createStackNavigator();
 
-function TabOneNavigator() {
+function ScanPageNavigator() {
   return (
-    <TabOneStack.Navigator>
-      <TabOneStack.Screen
-        name="TabOneScreen"
-        component={TabOneScreen}
+    <ScanPageStack.Navigator>
+      <ScanPageStack.Screen
+        name="ScanPage"
+        component={ScanPage}
         options={{ headerTitle: 'GoStyle' }}
       />
-    </TabOneStack.Navigator>
+    </ScanPageStack.Navigator>
   );
 }
 
@@ -73,7 +76,7 @@ function MyListNavigator() {
       <MyListStack.Screen
         name="MyList"
         component={MyList}
-        options={{ headerTitle: 'My list' }}
+        options={{ headerTitle: 'GoStyle' }}
       />
     </MyListStack.Navigator>
   );

@@ -6,9 +6,9 @@ export default {
     screens: {
       Root: {
         screens: {
-          TabOne: {
+          ScanPage: {
             screens: {
-              TabOneScreen: 'one',
+              ScanPageScreen: 'scan',
             },
           },
           MyList: {
