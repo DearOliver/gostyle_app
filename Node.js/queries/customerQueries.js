@@ -66,7 +66,7 @@ export const addCoupon = (request, response) => {
         if (error) {
             throw error
         }
-        response.status(200).json(`Coupon added`)
+        response.status(200).send(`Coupon added`)
     })
 }
 //Delete
