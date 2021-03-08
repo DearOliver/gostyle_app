@@ -14,9 +14,9 @@ class type {
 
   constructor(id, label,color)
   {
-      this.id = id;
-      this.label = label;
-      this.color = color;
+    this.id = id;
+    this.label = label;
+    this.color = color;
   }
 }
 

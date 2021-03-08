@@ -21,6 +21,11 @@ export default {
               HomePageScreen: 'home',
             }
           },
+          ProfilePage: {
+            screens: {
+              ScanPageScreen: 'profile',
+            },
+          },
         },
       },
       NotFound: '*',

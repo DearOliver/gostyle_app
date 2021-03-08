@@ -19,6 +19,7 @@ class custommer {
 }
 
 export default function ProfilePage() {
+  console.log('Hello')
 
   let c = new custommer(1234, 'Romain', 'Loubeyre', 'romain.loubeyre@yahoo.fr', 'Romain1999', '23/11/1999', '08/03/2021');
 
@@ -55,7 +56,6 @@ const styles = StyleSheet.create({
     padding: 20,
     justifyContent: 'center',
     backgroundColor: '#FFFFFF',
-    borderBottomColor: coupon_type.color,
     width: '90%',
     height: 150,
     borderBottomWidth: 7,

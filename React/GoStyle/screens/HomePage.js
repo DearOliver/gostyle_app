@@ -1,10 +1,13 @@
-  
+
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Button } from 'react-native';
 import { withSafeAreaInsets } from 'react-native-safe-area-context';
-import Coupon_Card from '../components/Coupon_Card'
+import Coupon_Card from '../components/Coupon_Card';
+import { createStackNavigator } from '@react-navigation/stack';
+import ProfilePage from '../screens/ProfilePage';
 
 import { Text, View, ScrollView } from '../components/Themed';
+
 
 class coupon {
   constructor(id, label, code, start_date, end_date, id_type)
@@ -37,6 +40,11 @@ export default function HomePage() {
 
   return (
     <ScrollView style={styles.scroll} lightColor={true} lightColor="#eee" darkColor="rgba(255,255,255,0.1)">
+      <Button
+        onPress={ProfilePageNavigator}
+        title="Profil"
+        color="#841584"
+      />
       <View style={styles.container}>
         { current_coupons_views }
       </View>
@@ -57,3 +65,18 @@ const styles = StyleSheet.create({
     width: '100%',
   },
 });
+
+const ProfilePageStack = createStackNavigator();
+
+function ProfilePageNavigator() {
+  console.log('Test')
+  return (
+    <ProfilePageStack.Navigator>
+      <ProfilePageStack.Screen
+        name="ProfilePage"
+        component={ProfilePage}
+        options={{ headerTitle: 'Mon Profil' }}
+      />
+    </ProfilePageStack.Navigator>
+  );
+}
