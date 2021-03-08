@@ -66,7 +66,7 @@ export const addCoupon = (request, response) => {
         if (error) {
             throw error
         }
-        response.status(200).json(`Coupon added`)
+        response.status(200).send(`Coupon added`)
     })
 }
 //Delete
@@ -77,7 +77,6 @@ export const deleteCustomer = (request, response) => {
             throw error
         }
         console.log(results.rows)
-        const r = json(results.rows)
         response.status(200).json(results.rows)
     })
 }
