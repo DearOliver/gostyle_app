@@ -8,7 +8,7 @@ The "packager-info.json" file contains port numbers and process PIDs that are us
 
 > What does the "settings.json" file contain?
 
-The "settings.json" file contains the server configuration that is used to serve the application manifest.
+The "settings.json" file contains the express_server configuration that is used to serve the application manifest.
 
 > Should I commit the ".expo" folder?
 

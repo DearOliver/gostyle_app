@@ -59,7 +59,16 @@ export const authUser = (request, response) => {
         response.status(200).json(!!results.rowCount)
     })
 }
-
+export const addCoupon = (request, response) => {
+    const {id} = request.params
+    const {id_coupon} = request.body
+    db('SELECT * FROM customer WHERE mail = $1 AND password = $2', [login,password],(error, results) => {
+        if (error) {
+            throw error
+        }
+        response.status(200).json(`Coupon added`)
+    })
+}
 //Delete
 export const deleteCustomer = (request, response) => {
     const id = request.params.id;
