@@ -38,7 +38,7 @@ export default function MyList() {
             {isFetch ? (
                 tableau.map(function (x) {
                     console.log('datenow: ',Date.now(),'| end_date: ',Date.parse(x.end_date))
-                        if (Date.parse(x.end_date) <= Date.now()) {
+                        if (Date.parse(x.end_date) >= Date.now()) {
                             return <Coupon_Card_User key={x.id} coupon={x}/>
                         }
                     }
@@ -49,7 +49,7 @@ export default function MyList() {
             </View>
             {isFetch ? (
                 tableau.map(function (x) {
-                        if (Date.parse(x.end_date) > Date.now()) {
+                        if (Date.parse(x.end_date) < Date.now()) {
                             return <CouponCardPerime key={x.id} coupon={x}/>
                         }
                     }
