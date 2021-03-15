@@ -1,7 +1,7 @@
 //Database configuration data
 
 const db_config = {
-        PGHOST : "172.16.18.15",
+        PGHOST : "172.16.18.23",
         PGUSER : "epsiwis",
         PGDATABASE : "gostyle",
         PGPASSWORD : "EpsiWis2018!",

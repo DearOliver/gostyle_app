@@ -1,4 +1,4 @@
-
+  
 import * as React from 'react';
 import { StyleSheet, Button } from 'react-native';
 import { withSafeAreaInsets } from 'react-native-safe-area-context';
