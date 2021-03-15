@@ -5,7 +5,7 @@ import express_server from "./config/express_server.js";
 import * as db from "./queries/customerQueries.js";
 import customers from "./routes/customers_route.js";
 
-const PORT = process.env.PORT || 5003;
+const PORT = process.env.PORT || 80;
 express_server.listen(PORT, () => {
     console.log(`app running on port http://localhost:${PORT} `);
 });
