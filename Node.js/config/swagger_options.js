@@ -31,4 +31,5 @@ const options = {
 };
 
 const swaggerSpecification = await swaggerJsdoc(options);
+
 export default swaggerSpecification
