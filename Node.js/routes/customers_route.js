@@ -76,9 +76,31 @@ router.get('s/', (req, res) => {
 
 /**
  * GET /customer/:id
- * récupère un customer d'après son id
  * renvoie un tableau avec 1 seul élément (le customer)
- */
+ *
+ * @swagger
+ * /customer/{id}:
+ *   get:
+ *     summary: récupère un customer d'après son id
+ *     tags: [Customers]
+ *     parameters:
+ *       - in : path
+ *         name: id
+ *         description: id of the customer
+ *         schema:
+ *           type: string
+ *         required: true
+ *     responses:
+ *       200:
+ *         description: returns customer with the selected id
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Customer'
+ *       400:
+ *         description: No customer found
+*/
+
 router.get('/:id', (req, res) => {
     return db.getCustomerById(req, res)
 })
@@ -97,6 +119,34 @@ router.get('/:id/coupons', (req, res) => {
  * update un customer
  * necessite en paramètre:
  * first_name, last_name, mail, password, birth_date
+ * @swagger
+ * /customer/{id}:
+ *   put:
+ *     summary: Update customer's data
+ *     tags: [Customers]
+ *     parameters:
+ *       - in : path
+ *         name: id
+ *         description: id of the customer
+ *         schema:
+ *           type: string
+ *         required: true
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Customer'
+ *     responses:
+ *       200:
+ *         description: The customer was updated
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Customer'
+ *       500:
+ *         description: Some server error
+ *
  */
 router.put('/:id', (req, res) => {
     return db.updateCustomer(req, res)
