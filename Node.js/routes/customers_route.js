@@ -3,9 +3,6 @@ import express from "express";
 
 //Route /customer
 /**
- *
- * @type {Router}
- *
  * @swagger
  * components:
  *   schemas:
@@ -39,6 +36,21 @@ import express from "express";
  *          mail: "barak@obama.com"
  *          password: "Barak&Michelle"
  *          birth_date: 2021-01-01
+ *     Login:
+ *       type: object
+ *       required:
+ *         - login
+ *         - password
+ *       properties:
+ *         login:
+ *           type: string
+ *           description: L'identifiant du customer = email
+ *         password:
+ *           type: string
+ *           description: Le mot de passe du customer
+ *       example:
+ *          login: "barak@obama.com"
+ *          lastname: Barak&Michelle
  */
 
 const router = express.Router()
@@ -75,9 +87,6 @@ router.get('/list', (req, res) => {
 })
 
 /**
- * GET /customer/:id
- * renvoie un tableau avec 1 seul élément (le customer)
- *
  * @swagger
  * /customer/{id}:
  *   get:
@@ -105,19 +114,33 @@ router.get('/:id', (req, res) => {
 })
 
 /**
- * GET /customer/:id/coupons
- * récupère la liste complète des coupons d'un uti
- * renvoie un tableau
+ * @swagger
+ * /customer/{id}/coupons:
+ *   get:
+ *     summary: Récupère les coupons d'un customer
+ *     tags: [Customers, Coupons]
+ *     parameters:
+ *       - in : path
+ *         name: id
+ *         description: id of the customer
+ *         schema:
+ *           type: string
+ *         required: true
+ *     responses:
+ *       200:
+ *         description: Retourne une liste de coupons
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Coupons'
+ *       400:
+ *         description: Pas de coupons ou de customer trouvé
  */
 router.get('/:id/coupons', (req, res) => {
     return db.getCustomersCoupons(req, res)
 })
 
 /**
- * PUT /customer/:id
- * update un customer
- * necessite en paramètre:
- * first_name, last_name, mail, password, birth_date
  * @swagger
  * /customer/{id}:
  *   put:
@@ -152,21 +175,48 @@ router.put('/:id', (req, res) => {
 })
 
 /**
- * POST /customer/login
- * check si le couple identifiant/mot de passe existe en bdd
- * necessite dans le body:
- * login,password
- * login = email pour l'instant
+ * @swagger
+ * /customer/login:
+ *   post:
+ *     summary: Login a customer
+ *     tags: [Login,Customers]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Login'
+ *     responses:
+ *       200:
+ *         description: The customer was updated
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Customer'
+ *       500:
+ *         description: Some server error
  */
 router.post('/login', (req, res) => {
     return db.authUser(req, res)
 })
 
 /**
- * POST /customer/coupons/add
- * ajoute un coupon au compte du customer
- * necessite dans le body:
- * id_coupon
+ * @swagger
+ * /customer/{:id}/coupons/add:
+ *   post:
+ *     summary: Ajoute un coupon au compte du customer
+ *     tags: [Customers]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *        text/plain:
+ *          schema:
+ *          type: application/json
+ *     responses:
+ *       200:
+ *         description: Le coupon a été ajouté
+ *       500:
+ *         description: Some server error
  */
 router.post('/:id/coupons/add', (req, res) => {
     return db.addCoupon(req, res)
@@ -181,4 +231,5 @@ router.post('/:id/coupons/add', (req, res) => {
 router.post('/add', (req, res) => {
     return db.addCustomer(req, res)
 })
+
 export default router
