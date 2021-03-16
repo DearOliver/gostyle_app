@@ -12,7 +12,7 @@ express_server.listen(PORT, () => {
     console.log(`app running on port http://localhost:${PORT} `);
 });
 
-express_server.use('/', swaggerUi.serve, swaggerUi.setup(options, {explorer: true}));
+express_server.use('/docs', swaggerUi.serve, swaggerUi.setup(options, {explorer: true}));
 
 express_server.use('/customer', customers)
 express_server.use('/coupon', coupons);

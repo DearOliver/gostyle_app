@@ -16,14 +16,14 @@ const options = {
                 },
                 contact: {
                     name: "GoStyle Team",
-                    url: "https://logrocket.com",
-                    email: "info@email.com",
+                    url: "",
+                    email: "",
                 },
             },
             servers: [
                 {
-                    url: "http://localhost",
-                    description: "My API Documentation",
+                    url: "http://localhost:5000/docs",
+                    description: "GoStyle API Doc",
                 },
             ],
         },

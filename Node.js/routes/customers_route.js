@@ -56,7 +56,7 @@ router.use(function timeLog(req, res, next) {
  *    name: Customers
  *    description: App's Customer
  *
- * /customers:
+ * /customer/list:
  *   get:
  *     summary: Returns all customers
  *     tags: [Customers]
@@ -70,7 +70,7 @@ router.use(function timeLog(req, res, next) {
  *               items:
  *                 $ref: '#/components/schemas/Customer'
  */
-router.get('s/', (req, res) => {
+router.get('/list', (req, res) => {
     return db.getAllCustomers(req, res)
 })
 
@@ -100,7 +100,6 @@ router.get('s/', (req, res) => {
  *       400:
  *         description: No customer found
 */
-
 router.get('/:id', (req, res) => {
     return db.getCustomerById(req, res)
 })
@@ -171,5 +170,15 @@ router.post('/login', (req, res) => {
  */
 router.post('/:id/coupons/add', (req, res) => {
     return db.addCoupon(req, res)
+})
+
+/**
+ * POST /customer/coupons/add
+ * ajoute un coupon au compte du customer
+ * necessite dans le body:
+ * id_coupon
+ */
+router.post('/add', (req, res) => {
+    return db.addCustomer(req, res)
 })
 export default router
