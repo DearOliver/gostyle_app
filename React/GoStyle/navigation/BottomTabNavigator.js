@@ -8,6 +8,7 @@ import useColorScheme from '../hooks/useColorScheme';
 import HomePage from '../screens/HomePage';
 import ScanPage from '../screens/ScanPage';
 import MyList from '../screens/MyList';
+import ProfilePage from "../screens/ProfilePage";
 
 
 const BottomTab = createBottomTabNavigator();
@@ -42,6 +43,7 @@ export default function BottomTabNavigator() {
           tabBarLabel:() => {return null},
         }}
       />
+
     </BottomTab.Navigator>
   );
 }

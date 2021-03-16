@@ -21,11 +21,11 @@ export default {
               HomePageScreen: 'home',
             }
           },
-          ProfilePage: {
-            screens: {
-              ScanPageScreen: 'profile',
-            },
           },
+        },
+      ProfilePage: {
+        screens: {
+          ProfileScreen: 'ProfilePage',
         },
       },
       NotFound: '*',
