@@ -10,9 +10,10 @@ import coupons from "./routes/coupons_route.js";
 const PORT = process.env.PORT || 5000;
 express_server.listen(PORT, () => {
     console.log(`app running on port http://localhost:${PORT} `);
+    console.log(`Doc url : http://localhost:${PORT}/docs `);
 });
 
-express_server.use('/', swaggerUi.serve, swaggerUi.setup(options, {explorer: true}));
+express_server.use('/docs', swaggerUi.serve, swaggerUi.setup(options, {explorer: true}));
 
 express_server.use('/customer', customers)
 express_server.use('/coupon', coupons);
