@@ -5,7 +5,6 @@ import { withSafeAreaInsets } from 'react-native-safe-area-context';
 import Coupon_Card from '../components/Coupon_Card';
 import { createStackNavigator } from '@react-navigation/stack';
 import ProfilePage from '../screens/ProfilePage';
-
 import { Text, View, ScrollView } from '../components/Themed';
 
 
@@ -21,7 +20,7 @@ class coupon {
   }
 }
 
-export default function HomePage() {
+export default function HomePage({ navigation }) {
 
   let c1 = new coupon('1234', '-203€ sur toutes les culottes', 'CUL2021XM', '06/03/2021', '23/04/2021', 0);
   let c2 = new coupon('1265', '-50% sur votre commande', '50POURCOM', '08/06/2021', '12/08/2021', 1);
@@ -34,14 +33,14 @@ export default function HomePage() {
 
   let current_coupons_views = tableau.map(x => {
     return (
-      <Coupon_Card coupon={x}/>
+      <Coupon_Card key={x.id} coupon={x}/>
     );
   });
 
   return (
     <ScrollView style={styles.scroll} lightColor={true} lightColor="#eee" darkColor="rgba(255,255,255,0.1)">
       <Button
-        onPress={ProfilePageNavigator}
+        onPress={() => navigation.navigate('ProfilePage')}
         title="Profil"
         color="#841584"
       />
@@ -65,18 +64,3 @@ const styles = StyleSheet.create({
     width: '100%',
   },
 });
-
-const ProfilePageStack = createStackNavigator();
-
-function ProfilePageNavigator() {
-  console.log('Test')
-  return (
-    <ProfilePageStack.Navigator>
-      <ProfilePageStack.Screen
-        name="ProfilePage"
-        component={ProfilePage}
-        options={{ headerTitle: 'Mon Profil' }}
-      />
-    </ProfilePageStack.Navigator>
-  );
-}

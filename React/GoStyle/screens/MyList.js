@@ -15,7 +15,7 @@ export default function MyList() {
 
     if (tableau.length <= 0) {
 
-        fetch('http://172.16.18.23/customer/B7B41975-8CA0-A33E-E21E-CB880E099BB0/coupons')
+        fetch('http://192.168.1.42:5000/customer/B7B41975-8CA0-A33E-E21E-CB880E099BB0/coupons')
             .then(
                 r => r.json()
             )

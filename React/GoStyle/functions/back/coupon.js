@@ -7,7 +7,7 @@ import * as API from './utils'
  */
 export const getCoupons = () => {
 
-    fetch(`${API.URL_COUPON}`)
+    return fetch(`${API.URL_COUPON}`)
         .then(r => r.json())
         .then(r => r)
         .catch(e => console.log(e))
@@ -20,7 +20,7 @@ export const getCoupons = () => {
  */
 export const getCouponById = (id) => {
 
-    fetch(`${API.URL_COUPON}/${id}`)
+    return fetch(`${API.URL_COUPON}/${id}`)
         .then(r => r.json())
         .then(r => r)
         .catch(e => console.log(e))
