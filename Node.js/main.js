@@ -4,6 +4,7 @@
 import express_server from "./config/express_server.js";
 import * as db from "./queries/customerQueries.js";
 import customers from "./routes/customers_route.js";
+import coupons from "./routes/coupons_route.js";
 
 const PORT = process.env.PORT || 5000;
 express_server.listen(PORT, () => {
@@ -14,4 +15,5 @@ express_server.listen(PORT, () => {
 express_server.get('/', function (req, res) {
     res.json({info: 'GoStyle API'})
 })
-express_server.use('/customer', customers)
+express_server.use('/customer', customers);
+express_server.use('/coupon', coupons);
