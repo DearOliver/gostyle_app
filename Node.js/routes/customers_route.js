@@ -11,12 +11,24 @@ router.use(function timeLog (req, res, next) {
     next()
 })
 
+
 /**
- * GET /customer
- * récupère la liste complète des customers
- * renvoie un tableau
+ * @openapi
+ * /customers:
+ *   get:
+ *     summary: Returns all customers
+ *     tags: [Customers]
+ *     responses:
+ *       200:
+ *         description: List of all the customers in database
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Post'
  */
-router.get('/',(req, res)=>{
+router.get('s/',(req, res)=>{
     return db.getAllCustomers(req,res)
 })
 
@@ -30,7 +42,7 @@ router.get('/:id',(req, res)=>{
 })
 
 /**
- * GET /customer/:id:coupons
+ * GET /customer/:id/coupons
  * récupère la liste complète des coupons d'un uti
  * renvoie un tableau
  */
