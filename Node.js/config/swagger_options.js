@@ -2,7 +2,7 @@ import swaggerJsdoc from "swagger-jsdoc";
 
 const options = {
     swaggerDefinition: {
-            host: 'localhost:3000',
+            host: 'localhost',
             basePath: '/',
             openapi: "3.0.0",
             info: {
@@ -22,12 +22,12 @@ const options = {
             },
             servers: [
                 {
-                    url: "http://localhost/docs",
+                    url: "http://localhost",
                     description: "My API Documentation",
                 },
             ],
         },
-    apis: ['./src/routes*.js'],
+    apis: ['./routes/*'],
 };
 
 const swaggerSpecification = await swaggerJsdoc(options);
