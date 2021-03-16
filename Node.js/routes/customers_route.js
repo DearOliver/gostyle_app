@@ -9,16 +9,16 @@ import express from "express";
  *     Customer:
  *       type: object
  *       required:
- *         - firstname
- *         - lastname
+ *         - first_name
+ *         - last_name
  *         - mail
  *         - password
  *         - birth_date
  *       properties:
- *         firstname:
+ *         first_name:
  *           type: string
  *           description: The first name of the customer
- *         lastname:
+ *         last_name:
  *           type: string
  *           description: The last name of the customer
  *         mail:
@@ -31,10 +31,10 @@ import express from "express";
  *           type: datetime
  *           description: customers's birthdate
  *       example:
- *          firstname: "Barak"
- *          lastname: "Obama"
- *          mail: "barak@obama.com"
- *          password: "Barak&Michelle"
+ *          first_name: Barak
+ *          last_name: Obama
+ *          mail: barak@obama.com
+ *          password: Barak&Michelle
  *          birth_date: 2021-01-01
  *     Login:
  *       type: object
@@ -108,7 +108,7 @@ router.get('/list', (req, res) => {
  *               $ref: '#/components/schemas/Customer'
  *       400:
  *         description: No customer found
-*/
+ */
 router.get('/:id', (req, res) => {
     return db.getCustomerById(req, res)
 })
@@ -182,10 +182,11 @@ router.put('/:id', (req, res) => {
  *     tags: [Login,Customers]
  *     requestBody:
  *       required: true
+ *       description: Identifiants de connexion
  *       content:
- *         application/json:
- *           schema:
- *             $ref: '#/components/schemas/Login'
+ *          application/json:
+ *              schema:
+ *                  $ref: '#/components/schemas/Login'
  *     responses:
  *       200:
  *         description: The customer was updated
@@ -209,9 +210,15 @@ router.post('/login', (req, res) => {
  *     requestBody:
  *       required: true
  *       content:
- *        text/plain:
- *          schema:
- *          type: application/json
+ *         application/json:
+ *           schema:
+ *              type: object
+ *              properties:
+ *                  id_coupon:
+ *                      type: string
+ *                      description: Id du coupon à ajouter au compte du customer
+ *           example:
+ *              id_coupon: String
  *     responses:
  *       200:
  *         description: Le coupon a été ajouté
@@ -223,10 +230,23 @@ router.post('/:id/coupons/add', (req, res) => {
 })
 
 /**
- * POST /customer/coupons/add
- * ajoute un coupon au compte du customer
- * necessite dans le body:
- * id_coupon
+ @swagger
+ * /customer/add:
+ *   post:
+ *     summary: Crée un customer
+ *     tags: [Customers]
+ *     requestBody:
+ *       required: true
+ *       description: Pet object that needs to be added to the store
+ *       content:
+ *          application/json:
+ *              schema:
+ *                  $ref: '#/components/schemas/Customer'
+ *     responses:
+ *       200:
+ *         description: L'utilisateur a été créé
+ *       500:
+ *         description: Some server error
  */
 router.post('/add', (req, res) => {
     return db.addCustomer(req, res)
