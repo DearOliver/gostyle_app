@@ -43,6 +43,7 @@ export default function BottomTabNavigator() {
           tabBarLabel:() => {return null},
         }}
       />
+
     </BottomTab.Navigator>
   );
 }

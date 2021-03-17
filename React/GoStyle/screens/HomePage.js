@@ -1,11 +1,10 @@
-
+  
 import * as React from 'react';
 import { StyleSheet, Button } from 'react-native';
 import { withSafeAreaInsets } from 'react-native-safe-area-context';
 import Coupon_Card from '../components/Coupon_Card';
 import { createStackNavigator } from '@react-navigation/stack';
 import ProfilePage from '../screens/ProfilePage';
-
 import { Text, View, ScrollView } from '../components/Themed';
 
 
@@ -21,6 +20,36 @@ class coupon {
   }
 }
 
+export default function HomePage({ navigation }) {
+  let c1 = new coupon('1234', '-203€ sur toutes les culottes', 'CUL2021XM', '06/03/2021', '23/04/2021', 0);
+  let c2 = new coupon('1265', '-50% sur votre commande', '50POURCOM', '08/06/2021', '12/08/2021', 1);
+  let c3 = new coupon('6934', '42 voitures achetées 1 offerte', 'AFFVOIT42', '01/02/2020', '26/04/2023', 2);
+  let c4 = new coupon('6634', '-10€ sur toutes les culottes', 'CUMP21XM', '06/03/2021', '23/04/2021', 0);
+  let c5 = new coupon('1115', '-20% sur votre commande', '50LLLLCOM', '08/06/2021', '12/08/2021', 1);
+  let c6 = new coupon('6664', '23 voitures achetées 2 offerte', 'ABHGBT42', '01/02/2020', '26/04/2023', 2);
+
+  let tableau = [c1, c6, c4, c2, c3, c5];
+
+  let current_coupons_views = tableau.map(x => {
+    return (
+      <Coupon_Card key={x.id} coupon={x}/>
+    );
+  });
+
+  return (
+    <ScrollView style={styles.scroll} lightColor={true} lightColor="#eee" darkColor="rgba(255,255,255,0.1)">
+      <Button
+        onPress={() => navigation.navigate('ProfilePage')}
+        title="Profil"
+        color="#841584"
+      />
+      <View style={styles.container}>
+        { current_coupons_views }
+      </View>
+    </ScrollView>
+  );
+}
+
 const styles = StyleSheet.create({
   scroll: {
     display: 'flex',
@@ -34,33 +63,3 @@ const styles = StyleSheet.create({
     width: '100%',
   },
 });
-
-export default function HomePage({ navigation }) {
-  let c1 = new coupon('1234', '-203€ sur toutes les culottes', 'CUL2021XM', '06/03/2021', '23/04/2021', 0);
-  let c2 = new coupon('1265', '-50% sur votre commande', '50POURCOM', '08/06/2021', '12/08/2021', 1);
-  let c3 = new coupon('6934', '42 voitures achetées 1 offerte', 'AFFVOIT42', '01/02/2020', '26/04/2023', 2);
-  let c4 = new coupon('6634', '-10€ sur toutes les culottes', 'CUMP21XM', '06/03/2021', '23/04/2021', 0);
-  let c5 = new coupon('1115', '-20% sur votre commande', '50LLLLCOM', '08/06/2021', '12/08/2021', 1);
-  let c6 = new coupon('6664', '23 voitures achetées 2 offerte', 'ABHGBT42', '01/02/2020', '26/04/2023', 2);
-
-  let tableau = [c1, c6, c4, c2, c3, c5];
-
-  let current_coupons_views = tableau.map(x => {
-    return (
-      <Coupon_Card coupon={x}/>
-    );
-  });
-
-  return (
-    <ScrollView style={styles.scroll} lightColor={true} lightColor="#eee" darkColor="rgba(255,255,255,0.1)">
-      <Button
-        onPress={ navigation.navigate('ProfilePage'), console.log("Hello") }
-        title="Profil"
-        color="#841584"
-      />
-      <View style={styles.container}>
-        { current_coupons_views }
-      </View>
-    </ScrollView>
-  );
-}
