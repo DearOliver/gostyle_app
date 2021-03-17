@@ -13,14 +13,13 @@ export const GetCouponById = (request, response) => {
     })
 }
 
-// Recuperation d' une liste de  coupon
+// Recuperation d'une liste de coupon
 export const GetCoupon = (request, response) => {
-    db('SELECT * FROM coupon', [] ,(error, results) => {
+    db('SELECT * FROM coupon WHERE end_date > now()', [] ,(error, results) => {
         if (error) {
             response.status(404).json({ error });
         }
         console.log(results.rows)
         return response.status(200).json(results.rows)
     })
-
 }
