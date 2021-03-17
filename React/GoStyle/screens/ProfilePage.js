@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {StyleSheet} from 'react-native';
+import {SafeAreaView, StyleSheet} from 'react-native';
 import {withSafeAreaInsets} from 'react-native-safe-area-context';
 
 import {Text, View, ScrollView} from '../components/Themed';
@@ -13,8 +13,8 @@ export default function ProfilePage() {
 
     const [isFetch, setIsFetch] = useState(false);
     const [customer, setCustomer] = useState({
-        isOk:false,
-        first_name:'Unknown'
+        isOk: false,
+        customer: 'Unknown'
     });
 
     const checkUser = () => {
@@ -22,31 +22,46 @@ export default function ProfilePage() {
             .then(async r => {
                 console.log(r)
                 if (r) {
-                    await setCustomer({isOk: true, first_name: r.first_name})
+                    await setCustomer({isOk: true, customer: r})
                 }
             })
     }
-    if (customer.isOk === false){
+    if (customer.isOk === false) {
         checkUser()
         console.log(customer)
     }
     console.log(customer)
 
     return (
-        <ScrollView style={styles.scroll} lightColor={true} lightColor="#eee" darkColor="rgba(255,255,255,0.1)">
-            <View style={styles.container}>
-                <View lightColor={true} style={styles.container}>
-                    <View style={styles.card}>
+        <SafeAreaView style={styles.container}>
+            <ScrollView style={styles.scroll} lightColor={true} lightColor="#eee" darkColor="rgba(255,255,255,0.1)">
+                <View style={styles.container}>
+                    <View lightColor={true} style={styles.container}>
                         <Text>Profil</Text>
-                        <Text>Nom</Text>
                         {customer.isOk ? (
-                            <Text>{customer.first_name}</Text>
+                        <View style={styles.card}>
+                        <Text>Nom: {customer.customer.last_name}</Text>
+                        <Text>Prenom: {customer.customer.first_name}</Text>
+                        </View>
                         ) : (<Text>Not found</Text>)
                         }
+                        {customer.isOk ? (
+                            <View style={styles.card}>
+                                <Text>Date de naissance: {customer.customer.birth_date}</Text>
+                                <Text>Date d'inscription: {customer.customer.creation_date}</Text>
+                            </View>
+                        ):null}
+                        {customer.isOk ? (
+                            <View style={styles.card}>
+                                {/*todo cacher le password*/}
+                                <Text>mail: {customer.customer.mail}</Text>
+                                <Text>mots de passe: {customer.customer.password}</Text>
+                            </View>
+                        ):null}
                     </View>
                 </View>
-            </View>
-        </ScrollView>
+            </ScrollView>
+        </SafeAreaView>
     );
 }
 
@@ -61,6 +76,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         width: '100%',
+        marginTop:10
     },
     card: {
         flex: 1,
@@ -69,8 +85,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: '#FFFFFF',
         width: '90%',
-        height: 150,
+        height: 100,
         borderBottomWidth: 7,
+        borderBottomColor: "#4355d4",
         marginVertical: 15,
         borderRadius: 3,
         shadowColor: '#000000',
