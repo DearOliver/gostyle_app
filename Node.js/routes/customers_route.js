@@ -123,8 +123,6 @@ router.get('/:id', (req, res) => {
  *       - in : path
  *         name: id
  *         description: id of the customer
- *         schema:
- *           type: string
  *         required: true
  *     responses:
  *       200:
@@ -132,7 +130,7 @@ router.get('/:id', (req, res) => {
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Coupons'
+ *               $ref: '#/components/schemas/Coupon'
  *       400:
  *         description: Pas de coupons ou de customer trouvé
  */
@@ -179,7 +177,7 @@ router.put('/:id', (req, res) => {
  * /customer/login:
  *   post:
  *     summary: Login a customer
- *     tags: [Login,Customers]
+ *     tags: [Customers]
  *     requestBody:
  *       required: true
  *       description: Identifiants de connexion
@@ -189,7 +187,7 @@ router.put('/:id', (req, res) => {
  *                  $ref: '#/components/schemas/Login'
  *     responses:
  *       200:
- *         description: The customer was updated
+ *         description: The customer was authenticated
  *         content:
  *           application/json:
  *             schema:
@@ -203,10 +201,15 @@ router.post('/login', (req, res) => {
 
 /**
  * @swagger
- * /customer/{:id}/coupons/add:
+ * /customer/{id}/coupons/add:
  *   post:
  *     summary: Ajoute un coupon au compte du customer
  *     tags: [Customers]
+ *     parameters:
+ *       - in : path
+ *         name: id
+ *         description: id of the customer
+ *         required: true
  *     requestBody:
  *       required: true
  *       content:
@@ -237,7 +240,7 @@ router.post('/:id/coupons/add', (req, res) => {
  *     tags: [Customers]
  *     requestBody:
  *       required: true
- *       description: Pet object that needs to be added to the store
+ *       description: The new customer
  *       content:
  *          application/json:
  *              schema:
