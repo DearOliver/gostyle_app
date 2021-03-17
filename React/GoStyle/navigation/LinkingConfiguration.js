@@ -19,12 +19,8 @@ export default {
           HomePage: {
             screens: {
               HomePageScreen: 'home',
+              ProfilePageScreen: 'profile'
             }
-          },
-          ProfilePage: {
-            screens: {
-              ScanPageScreen: 'profile',
-            },
           },
         },
       },

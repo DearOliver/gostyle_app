@@ -18,8 +18,7 @@ class custommer {
   }
 }
 
-export default function ProfilePage() {
-  console.log('Hello')
+export default function ProfilePage({ navigation }) {
 
   let c = new custommer(1234, 'Romain', 'Loubeyre', 'romain.loubeyre@yahoo.fr', 'Romain1999', '23/11/1999', '08/03/2021');
 

@@ -21,8 +21,21 @@ class coupon {
   }
 }
 
-export default function HomePage() {
+const styles = StyleSheet.create({
+  scroll: {
+    display: 'flex',
+    flex: 1,
+    width: '100%',
+  },
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+  },
+});
 
+export default function HomePage({ navigation }) {
   let c1 = new coupon('1234', '-203€ sur toutes les culottes', 'CUL2021XM', '06/03/2021', '23/04/2021', 0);
   let c2 = new coupon('1265', '-50% sur votre commande', '50POURCOM', '08/06/2021', '12/08/2021', 1);
   let c3 = new coupon('6934', '42 voitures achetées 1 offerte', 'AFFVOIT42', '01/02/2020', '26/04/2023', 2);
@@ -41,7 +54,7 @@ export default function HomePage() {
   return (
     <ScrollView style={styles.scroll} lightColor={true} lightColor="#eee" darkColor="rgba(255,255,255,0.1)">
       <Button
-        onPress={ProfilePageNavigator}
+        onPress={ navigation.navigate('ProfilePage'), console.log("Hello") }
         title="Profil"
         color="#841584"
       />
@@ -49,34 +62,5 @@ export default function HomePage() {
         { current_coupons_views }
       </View>
     </ScrollView>
-  );
-}
-
-const styles = StyleSheet.create({
-  scroll: {
-    display: 'flex',
-    flex: 1,
-    width: '100%',
-  },
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '100%',
-  },
-});
-
-const ProfilePageStack = createStackNavigator();
-
-function ProfilePageNavigator() {
-  console.log('Test')
-  return (
-    <ProfilePageStack.Navigator>
-      <ProfilePageStack.Screen
-        name="ProfilePage"
-        component={ProfilePage}
-        options={{ headerTitle: 'Mon Profil' }}
-      />
-    </ProfilePageStack.Navigator>
   );
 }

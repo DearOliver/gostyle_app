@@ -8,6 +8,7 @@ import useColorScheme from '../hooks/useColorScheme';
 import HomePage from '../screens/HomePage';
 import ScanPage from '../screens/ScanPage';
 import MyList from '../screens/MyList';
+import ProfilePage from '../screens/ProfilePage';
 
 
 const BottomTab = createBottomTabNavigator();
@@ -86,11 +87,16 @@ const HomePageStack = createStackNavigator();
 
 function HomePageNavigator() {
   return (
-    <HomePageStack.Navigator>
+    <HomePageStack.Navigator initialRouteName="HomePage">
       <HomePageStack.Screen
         name="HomePage"
         component={HomePage}
         options={{ headerTitle: 'GoStyle' }}
+      />
+      <HomePageStack.Screen
+        name="ProfilePage"
+        component={ProfilePage}
+        options={{ headerTitle: 'Mon Profil' }}
       />
     </HomePageStack.Navigator>
   );
