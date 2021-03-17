@@ -180,7 +180,7 @@ router.put('/:id', (req, res) => {
  *     tags: [Customers]
  *     requestBody:
  *       required: true
- *       description:Login credentials
+ *       description: Login credentials
  *       content:
  *          application/json:
  *              schema:
