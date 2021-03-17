@@ -75,17 +75,17 @@ router.use(function timeLog (req, res, next) {
  * @swagger
  * /coupon:
  *   get:
- *     summary: Tous les coupons valides
+ *     summary: All valid coupons
  *     tags: [Coupons]
  *     responses:
  *       200:
- *         description: Retourne une liste de coupons
+ *         description: Return a list of coupons
  *         content:
  *           application/json:
- *             schema:
+ *             schéma:
  *               $ref: '#/components/schemas/Coupon'
  *       400:
- *         description: Pas de coupons ou de customer trouvé
+ *         description:  No coupons or customer found
  */
 router.get('/',(req, res)=> {
     return db.GetCoupon(req, res)

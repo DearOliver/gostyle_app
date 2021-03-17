@@ -44,10 +44,10 @@ import express from "express";
  *       properties:
  *         login:
  *           type: string
- *           description: L'identifiant du customer = email
+ *           description: The custormer id = email
  *         password:
  *           type: string
- *           description: Le mot de passe du customer
+ *           description: The customer's password
  *       example:
  *          login: "barak@obama.com"
  *          lastname: Barak&Michelle
@@ -90,7 +90,7 @@ router.get('/list', (req, res) => {
  * @swagger
  * /customer/{id}:
  *   get:
- *     summary: récupère un customer d'après son id
+ *     summary: Retrieves a customer by its id
  *     tags: [Customers]
  *     parameters:
  *       - in : path
@@ -117,7 +117,7 @@ router.get('/:id', (req, res) => {
  * @swagger
  * /customer/{id}/coupons:
  *   get:
- *     summary: Récupère les coupons d'un customer
+ *     summary: Recover coupons from a customer
  *     tags: [Customers, Coupons]
  *     parameters:
  *       - in : path
@@ -126,13 +126,13 @@ router.get('/:id', (req, res) => {
  *         required: true
  *     responses:
  *       200:
- *         description: Retourne une liste de coupons
+ *         description: Returns a list of coupons
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Coupon'
  *       400:
- *         description: Pas de coupons ou de customer trouvé
+ *         description: No coupons or customer found
  */
 router.get('/:id/coupons', (req, res) => {
     return db.getCustomersCoupons(req, res)
@@ -180,7 +180,7 @@ router.put('/:id', (req, res) => {
  *     tags: [Customers]
  *     requestBody:
  *       required: true
- *       description: Identifiants de connexion
+ *       description:Login credentials
  *       content:
  *          application/json:
  *              schema:
@@ -203,7 +203,7 @@ router.post('/login', (req, res) => {
  * @swagger
  * /customer/{id}/coupons/add:
  *   post:
- *     summary: Ajoute un coupon au compte du customer
+ *     summary: Adds a coupon to the customer's account
  *     tags: [Customers]
  *     parameters:
  *       - in : path
@@ -219,12 +219,12 @@ router.post('/login', (req, res) => {
  *              properties:
  *                  id_coupon:
  *                      type: string
- *                      description: Id du coupon à ajouter au compte du customer
+ *                      description: Id of the coupon to be added to the customer's account
  *           example:
  *              id_coupon: String
  *     responses:
  *       200:
- *         description: Le coupon a été ajouté
+ *         description: The coupon has been added
  *       500:
  *         description: Some server error
  */
@@ -236,7 +236,7 @@ router.post('/:id/coupons/add', (req, res) => {
  @swagger
  * /customer/add:
  *   post:
- *     summary: Crée un customer
+ *     summary: Create a customer
  *     tags: [Customers]
  *     requestBody:
  *       required: true
@@ -247,7 +247,7 @@ router.post('/:id/coupons/add', (req, res) => {
  *                  $ref: '#/components/schemas/Customer'
  *     responses:
  *       200:
- *         description: L'utilisateur a été créé
+ *         description: The user has been created
  *       500:
  *         description: Some server error
  */
