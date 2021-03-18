@@ -9,9 +9,7 @@ export const getCustomerCoupons = (id) => {
 
     return fetch(`${API.URL_CUSTOMER}/${id}/coupons`)
         .then(r => r.json())
-        .then(r => {
-            console.log(r)
-            return r})
+        .then(r => r)
         .catch(e => console.log(e))
 }
 
@@ -20,13 +18,11 @@ export const getCustomerCoupons = (id) => {
  * renvoie un customer
  * @Param id
  */
-export const getCustomerById = async(id) => {
+export const getCustomerById = async (id) => {
 
     return fetch(`${API.URL_CUSTOMER}/${id}`)
         .then(r => r.json())
-        .then(r => {
-            console.log(r)
-            return r[0]})
+        .then(r => r[0])
         .catch(e => console.log(e))
 }
 
@@ -38,11 +34,18 @@ export const getCustomerById = async(id) => {
  * @Param log:{login,password}
  */
 export const authCustomer = (log) => {
-
-    return fetch(`${API.URL_CUSTOMER}/login`, {method: 'POST', body: JSON.stringify(log)})
+    return fetch(`${API.URL_CUSTOMER}/login`, {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(log)
+    })
         .then(r => r.json())
-        .then(r => r)
-        .catch(e => console.log(e))
+        .then(r =>  r[0])
+        .catch(e => {
+            console.log(e.errorMessage)
+        })
 }
 
 /**
@@ -55,7 +58,10 @@ export const addCoupon = (id, id_coupon) => {
     const body = {
         id_coupon: id_coupon
     }
-    return fetch(`${API.URL_CUSTOMER}/${id}/coupons/add`, {method: 'POST', body: JSON.stringify(body)})
+    console.log('stringify',JSON.stringify(body))
+    return fetch(`${API.URL_CUSTOMER}/${id}/coupons/add`, {method: 'POST',headers: {
+            "Content-Type": "application/json"
+        }, body: JSON.stringify(body)})
         .then(r => r.json())
         .then(r => r)
         .catch(e => console.log(e))
@@ -69,7 +75,9 @@ export const addCoupon = (id, id_coupon) => {
  */
 export const updateCustomer = (customer) => {
 
-    return fetch(`${API.URL_CUSTOMER}/${customer.id}/coupons`, {method: 'PUT', body: JSON.stringify(customer)})
+    return fetch(`${API.URL_CUSTOMER}/${customer.id}/coupons`, {method: 'PUT',headers: {
+            "Content-Type": "application/json"
+        }, body: JSON.stringify(customer)})
         .then(r => r.json())
         .then(r => r)
         .catch(e => console.log(e))
