@@ -39,7 +39,9 @@ export const getCustomerById = async(id) => {
  */
 export const authCustomer = (log) => {
 
-    return fetch(`${API.URL_CUSTOMER}/login`, {method: 'POST', body: JSON.stringify(log)})
+    return fetch(`${API.URL_CUSTOMER}/login`, {method: 'POST',headers: {
+            "Content-Type": "application/json"
+        }, body: JSON.stringify(log)})
         .then(r => r.json())
         .then(r => r)
         .catch(e => console.log(e))
@@ -55,7 +57,10 @@ export const addCoupon = (id, id_coupon) => {
     const body = {
         id_coupon: id_coupon
     }
-    return fetch(`${API.URL_CUSTOMER}/${id}/coupons/add`, {method: 'POST', body: JSON.stringify(body)})
+    console.log('stringify',JSON.stringify(body))
+    return fetch(`${API.URL_CUSTOMER}/${id}/coupons/add`, {method: 'POST',headers: {
+            "Content-Type": "application/json"
+        }, body: JSON.stringify(body)})
         .then(r => r.json())
         .then(r => r)
         .catch(e => console.log(e))
@@ -69,7 +74,9 @@ export const addCoupon = (id, id_coupon) => {
  */
 export const updateCustomer = (customer) => {
 
-    return fetch(`${API.URL_CUSTOMER}/${customer.id}/coupons`, {method: 'PUT', body: JSON.stringify(customer)})
+    return fetch(`${API.URL_CUSTOMER}/${customer.id}/coupons`, {method: 'PUT',headers: {
+            "Content-Type": "application/json"
+        }, body: JSON.stringify(customer)})
         .then(r => r.json())
         .then(r => r)
         .catch(e => console.log(e))
