@@ -1,40 +1,25 @@
 import * as React from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
-import {withSafeAreaInsets} from 'react-native-safe-area-context';
-
 import {Text, View, ScrollView} from '../components/Themed';
 import {useState} from "react";
-import * as APICustomer from '../functions/back/customer.js'
-import * as API from '../functions/back/utils.js'
-import * as store from "../functions/front/store"
+import * as Store from "../functions/front/store"
 import {Button} from "react-native-paper";
 
 
 export default function ProfilePage() {
-    console.log('Hello')
-
-    const [isFetch, setIsFetch] = useState(false);
     const [customer, setCustomer] = useState({
         isOk: false,
-        customer: 'Unknown'
+        customer: null
     });
 
-    const checkUser = () => {
-        APICustomer.getCustomerById(API.ID_CUSTOMER)
-            .then(async r => {
-                console.log(r)
-                if (r) {
-                    await setCustomer({isOk: true, customer: r})
-                }
-            })
+    if (customer.isOk === false){
+        Store.getValueFor('customer').then(r => {
+            setCustomer({ isOk:true, customer: JSON.parse(r)});
+        })
     }
-    if (customer.isOk === false) {
-        checkUser()
-        console.log(customer)
-    }
-    console.log(customer)
+
     const handleLogout = ()=>{
-        store.removeItem("customer")
+        Store.removeItem("customer")
     }
 
     return (
@@ -48,7 +33,7 @@ export default function ProfilePage() {
                                 <Text>Nom: {customer.customer.last_name}</Text>
                                 <Text>Prenom: {customer.customer.first_name}</Text>
                             </View>
-                        ) : (<Text>Not found</Text>)
+                        ) : (<Text>{customer.isOk}</Text>)
                         }
                         {customer.isOk ? (
                             <>

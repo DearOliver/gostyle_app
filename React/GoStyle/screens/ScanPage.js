@@ -10,10 +10,10 @@ export default function ScanPage() {
     const [scanned, setScanned] = useState(false);
     const [added, setAdded] = useState({isOk: false, text: ""});
     const [coupon, setCoupon] = useState({
-        isOK: false,
+        isOk: false,
         coupon: {id: "", label: "", code: "", start_date: "", end_date: "", id_type: ""}
     });
-    const [customer, setCustomer] = useState({isOK: false, customer: null});
+    const [customer, setCustomer] = useState({isOk: false, customer: null});
     const [modalVisible, setModalVisible] = useState({Visible: false, data: null});
 
     useEffect(() => {
@@ -24,12 +24,9 @@ export default function ScanPage() {
     }, []);
 
     const checkCoupon = (id) => {
-        console.log(coupon.isOK)
         APICoupon.getCouponById(id)
             .then(async r => {
-                console.log(r)
                 if (r) {
-                    console.log('request: ', r)
                     await setCoupon({
                         isOk: true,
                         coupon: {
@@ -48,10 +45,9 @@ export default function ScanPage() {
     const addCoupon = () => {
         APICustomer.addCoupon(customer.customer.id, coupon.coupon.id)
             .then(async r => {
-                console.log('customer: ', customer)
                 if (r) {
                     setCoupon({
-                        isOK: false,
+                        isOk: false,
                         coupon: {id: " ", label: " ", code: " ", start_date: " ", end_date: " ", id_type: " "}
                     })
                     if (r.status === "200") {
@@ -63,13 +59,13 @@ export default function ScanPage() {
             })
     }
 
-    if (customer.isOK === false){
+    if (customer.isOk === false){
         Store.getValueFor('customer').then(r => {
-            setCustomer({ isOK:true, customer: JSON.parse(r)});
+            setCustomer({ isOk:true, customer: JSON.parse(r)});
         })
     }
 
-    if (modalVisible.Visible === true && coupon.isOK === false) {
+    if (modalVisible.Visible === true && coupon.isOk === false) {
         checkCoupon(modalVisible.data)
     }
 
@@ -120,7 +116,7 @@ export default function ScanPage() {
                                     onPress={() => {
                                         setModalVisible({Visible: false, data: null});
                                         setCoupon({
-                                            isOK: false,
+                                            isOk: false,
                                             coupon: {
                                                 id: "",
                                                 label: "",
