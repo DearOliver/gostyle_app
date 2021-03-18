@@ -1,6 +1,6 @@
   
 import * as React from 'react';
-import { StyleSheet, Button } from 'react-native';
+import { StyleSheet, Button, TouchableOpacity, Modal } from 'react-native';
 import { withSafeAreaInsets } from 'react-native-safe-area-context';
 import Coupon_Card from '../components/Coupon_Card';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -14,7 +14,7 @@ export default function HomePage({ navigation }) {
   let [tableau, setTableau] = useState([]);
 
   if (tableau.length <= 0) {
-    fetch('http://172.16.18.23:5000/9CC0C6E1-5955-ABBB-E108-A5483D6DC689/coupons')
+    fetch('http://172.16.18.23:5000/coupon')
             .then(
                 r => r.json()
             )
@@ -26,7 +26,6 @@ export default function HomePage({ navigation }) {
                 }
             );
   }
-  console.log(tableau)
 
   let current_coupons_views = tableau.map(x => {
     return (
@@ -36,11 +35,11 @@ export default function HomePage({ navigation }) {
 
   return (
     <ScrollView style={styles.scroll} lightColor={true} lightColor="#eee" darkColor="rgba(255,255,255,0.1)">
-      <Button
-        onPress={() => navigation.navigate('ProfilePage')}
-        title="Profil"
-        color="#841584"
-      />
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ProfilePage')}>
+        <Text style={{ fontSize: 20 }}>
+          Mon Profil
+        </Text>
+      </TouchableOpacity>
       <View style={styles.container}>
         { current_coupons_views }
       </View>
@@ -60,6 +59,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: '100%',
   },
+  button: {
+    height: 60,
+    backgroundColor: '#ffffff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: '#000000',
+    shadowOffset: {
+        width: 1,
+        height: 0
+    },
+    shadowOpacity: 0.2
+  }
 });
 
 //TODO Add to list perso, Filter on libellé
