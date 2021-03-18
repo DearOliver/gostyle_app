@@ -11,7 +11,8 @@ export const getCustomerCoupons = (id) => {
         .then(r => r.json())
         .then(r => {
             console.log(r)
-            return r})
+            return r
+        })
         .catch(e => console.log(e))
 }
 
@@ -20,13 +21,14 @@ export const getCustomerCoupons = (id) => {
  * renvoie un customer
  * @Param id
  */
-export const getCustomerById = async(id) => {
+export const getCustomerById = async (id) => {
 
     return fetch(`${API.URL_CUSTOMER}/${id}`)
         .then(r => r.json())
         .then(r => {
             console.log(r)
-            return r[0]})
+            return r[0]
+        })
         .catch(e => console.log(e))
 }
 
@@ -38,11 +40,19 @@ export const getCustomerById = async(id) => {
  * @Param log:{login,password}
  */
 export const authCustomer = (log) => {
-
-    return fetch(`${API.URL_CUSTOMER}/login`, {method: 'POST', body: JSON.stringify(log)})
+    console.log(`${API.URL_CUSTOMER}/login`)
+    return fetch(`${API.URL_CUSTOMER}/login`, {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(log)
+    })
         .then(r => r.json())
-        .then(r => r)
-        .catch(e => console.log(e))
+        .then(r =>  r[0])
+        .catch(e => {
+            console.log(e.errorMessage)
+        })
 }
 
 /**

@@ -54,6 +54,7 @@ export const updateCustomer = (request, response) => {
 //region POST
 export const authUser = (request, response) => {
     const {login,password} = request.body
+    console.log(request)
     db('SELECT * FROM customer WHERE mail = $1 AND password = $2', [login,password],(error, results) => {
         if (error) {
             return response.status(400).json( {error : error} );

@@ -3,8 +3,8 @@
   "expoServerPort": 19000,
   "packagerPort": 19000,
   "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
+  "expoServerNgrokUrl": "https://jy-vfu.anonymous.gostyle.exp.direct",
+  "packagerNgrokUrl": "https://packager.jy-vfu.anonymous.gostyle.exp.direct",
+  "ngrokPid": 27144,
   "webpackServerPort": null
 }
