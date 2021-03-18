@@ -86,7 +86,7 @@ export const addCustomer = (request, response) => {
         if (error) {
             return response.status(400).json({ error });
         }
-        return response.status(200).send(`Coupon added`)
+        return response.status(200).send({message:`Customer created`})
     })
 }
 //endregion

@@ -82,5 +82,19 @@ export const updateCustomer = (customer) => {
         .then(r => r)
         .catch(e => console.log(e))
 }
-//todo createCustomer
 
+/**
+ * créer un customer
+ * necessite en paramètre:
+ * first_name, last_name, mail, password, birth_date
+ * @Param customer
+ */
+export const createCustomer = (customer) => {
+
+    return fetch(`${API.URL_CUSTOMER}/add`, {method: 'POST',headers: {
+            "Content-Type": "application/json"
+        }, body: JSON.stringify(customer)})
+        .then(r => r.json())
+        .then(r => r)
+        .catch(e => console.log(e))
+}
