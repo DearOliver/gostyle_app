@@ -6,6 +6,8 @@ import {Text, View, ScrollView} from '../components/Themed';
 import {useState} from "react";
 import * as APICustomer from '../functions/back/customer.js'
 import * as API from '../functions/back/utils.js'
+import * as store from "../functions/front/store"
+import {Button} from "react-native-paper";
 
 
 export default function ProfilePage() {
@@ -31,6 +33,9 @@ export default function ProfilePage() {
         console.log(customer)
     }
     console.log(customer)
+    const handleLogout = ()=>{
+        store.removeItem("customer")
+    }
 
     return (
         <SafeAreaView style={styles.container}>
@@ -39,27 +44,31 @@ export default function ProfilePage() {
                     <View lightColor={true} style={styles.container}>
                         <Text>Profil</Text>
                         {customer.isOk ? (
-                        <View style={styles.card}>
-                        <Text>Nom: {customer.customer.last_name}</Text>
-                        <Text>Prenom: {customer.customer.first_name}</Text>
-                        </View>
+                            <View style={styles.card}>
+                                <Text>Nom: {customer.customer.last_name}</Text>
+                                <Text>Prenom: {customer.customer.first_name}</Text>
+                            </View>
                         ) : (<Text>Not found</Text>)
                         }
                         {customer.isOk ? (
-                            <View style={styles.card}>
-                                <Text>Date de naissance: {customer.customer.birth_date}</Text>
-                                <Text>Date d'inscription: {customer.customer.creation_date}</Text>
-                            </View>
-                        ):null}
-                        {customer.isOk ? (
-                            <View style={styles.card}>
-                                {/*todo cacher le password*/}
-                                <Text>mail: {customer.customer.mail}</Text>
-                                <Text>mots de passe: {customer.customer.password}</Text>
-                            </View>
-                        ):null}
+                            <>
+                                <View style={styles.card}>
+                                    <Text>Date de naissance: {customer.customer.birth_date}</Text>
+                                    <Text>Date d'inscription: {customer.customer.creation_date}</Text>
+                                </View>
+                                <View style={styles.card}>
+                                    {/*todo cacher le password*/}
+                                    <Text>mail: {customer.customer.mail}</Text>
+                                    <Text>mots de passe: {customer.customer.password}</Text>
+                                </View>
+                            </>
+                        ) : null}
                     </View>
                 </View>
+                <Button icon="logout-variant" mode="outlined" color="#000" onPress={() => handleLogout()}
+                        title="Déconnexion">
+                    Déconnexion
+                </Button>
             </ScrollView>
         </SafeAreaView>
     );
@@ -76,7 +85,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         width: '100%',
-        marginTop:10
+        marginTop: 10
     },
     card: {
         flex: 1,
