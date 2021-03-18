@@ -28,7 +28,7 @@ export const getCustomersCoupons = (request, response) => {
         if (error) {
             response.status(404).json({ error });
         }
-        console.log(`result rows = ${results.rows}`)
+        // console.log(`result rows = ${results.rows}`)
         return response.status(200).json(results.rows)
     })
 }
@@ -73,9 +73,9 @@ export const addCoupon = (request, response) => {
     const {id_coupon} = request.body
     db('INSERT INTO customer_coupon (id_customer, id_coupon, used) values ($1,$2,0)', [id,id_coupon],(error, results) => {
         if (error) {
-            return response.status(400).json({ error });
+            return response.status(400).json({ error, "status":"400" });
         }
-        return response.status(200).send(`Coupon added`)
+        return response.status(200).json({"message":"Coupon added","status":"200"})
     })
 }
 export const addCustomer = (request, response) => {
