@@ -9,8 +9,6 @@ import * as API from '../functions/back/utils.js'
 
 
 export default function ProfilePage() {
-    console.log('Hello')
-
     const [isFetch, setIsFetch] = useState(false);
     const [customer, setCustomer] = useState({
         isOk:false,
