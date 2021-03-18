@@ -37,8 +37,7 @@ export const getCustomersCoupons = (request, response) => {
 //region Put
 export const updateCustomer = (request, response) => {
     const id = request.params.id
-    const {first_name, last_name, mail, password, birth_date} = request.query
-    console.log(request.query)
+    const {first_name, last_name, mail, password, birth_date} = request.body
     db(
         'UPDATE customer SET first_name = $1,  last_name = $2, mail = $3, password = $4, birth_date = $5 WHERE id = $6',
         [first_name, last_name, mail, password, birth_date, id],
