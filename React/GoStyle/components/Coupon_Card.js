@@ -42,6 +42,7 @@ function get_type(coupon){
 
 
 export default function Coupon_Card({ coupon }) {
+  console.log('Coupon_Card: ', coupon)
   let coupon_type = get_type(coupon);
   let [modalVisible, setModalVisible] = useState(false);
 

@@ -11,6 +11,7 @@ import * as SplashScreen from "expo-splash-screen";
 import * as store from "../functions/front/store"
 import HomeLogin from "../screens/Login/HomeLogin";
 import Login from "../screens/Login/Login";
+import Register from "../screens/Login/Register";
 
 // If you are not familiar with React Navigation, we recommend going through the
 // "Fundamentals" guide: https://reactnavigation.org/docs/getting-started
@@ -31,7 +32,7 @@ export default function Navigation({colorScheme}) {
 const Stack = createStackNavigator();
 
 function RootNavigator() {
-    SplashScreen.preventAutoHideAsync().then(r => r);
+
     const [state, setState] = useState({
         isLoading: true,
         isSignedIn: false
@@ -62,7 +63,7 @@ function RootNavigator() {
                                       headerTintColor: "#fff"
                                   }}/>
                     <Stack.Screen name="Register"
-                                  component={HomeLogin}
+                                  component={Register}
                                   options={{
                                       headerTransparent: true,
                                       headerTitle: false,

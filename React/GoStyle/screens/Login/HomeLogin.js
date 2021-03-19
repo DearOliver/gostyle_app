@@ -37,9 +37,6 @@ const Screen = ({navigation}) => {
 const styles = StyleSheet.create({
     sectionView: {
         flex: 1,
-        borderColor: "#cf00ff",
-        borderStyle: 'solid',
-        borderWidth: 1,
         // backgroundColor: "#eaeaea"
 
     },

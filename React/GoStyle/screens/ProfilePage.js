@@ -1,34 +1,26 @@
 import * as React from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
-import {withSafeAreaInsets} from 'react-native-safe-area-context';
-
 import {Text, View, ScrollView} from '../components/Themed';
 import {useState} from "react";
-import * as APICustomer from '../functions/back/customer.js'
-import * as API from '../functions/back/utils.js'
+import * as Store from "../functions/front/store"
+import {Button} from "react-native-paper";
 
 
 export default function ProfilePage() {
-    const [isFetch, setIsFetch] = useState(false);
     const [customer, setCustomer] = useState({
         isOk: false,
-        customer: 'Unknown'
+        customer: null
     });
 
-    const checkUser = () => {
-        APICustomer.getCustomerById(API.ID_CUSTOMER)
-            .then(async r => {
-                console.log(r)
-                if (r) {
-                    await setCustomer({isOk: true, customer: r})
-                }
-            })
+    if (customer.isOk === false){
+        Store.getValueFor('customer').then(r => {
+            setCustomer({ isOk:true, customer: JSON.parse(r)});
+        })
     }
-    if (customer.isOk === false) {
-        checkUser()
-        console.log(customer)
+
+    const handleLogout = ()=>{
+        Store.removeItem("customer")
     }
-    console.log(customer)
 
     return (
         <SafeAreaView style={styles.container}>
@@ -37,27 +29,31 @@ export default function ProfilePage() {
                     <View lightColor={true} style={styles.container}>
                         <Text>Profil</Text>
                         {customer.isOk ? (
-                        <View style={styles.card}>
-                        <Text>Nom: {customer.customer.last_name}</Text>
-                        <Text>Prenom: {customer.customer.first_name}</Text>
-                        </View>
-                        ) : (<Text>Not found</Text>)
+                            <View style={styles.card}>
+                                <Text>Nom: {customer.customer.last_name}</Text>
+                                <Text>Prenom: {customer.customer.first_name}</Text>
+                            </View>
+                        ) : (<Text>{customer.isOk}</Text>)
                         }
                         {customer.isOk ? (
-                            <View style={styles.card}>
-                                <Text>Date de naissance: {customer.customer.birth_date}</Text>
-                                <Text>Date d'inscription: {customer.customer.creation_date}</Text>
-                            </View>
-                        ):null}
-                        {customer.isOk ? (
-                            <View style={styles.card}>
-                                {/*todo cacher le password*/}
-                                <Text>mail: {customer.customer.mail}</Text>
-                                <Text>mots de passe: {customer.customer.password}</Text>
-                            </View>
-                        ):null}
+                            <>
+                                <View style={styles.card}>
+                                    <Text>Date de naissance: {customer.customer.birth_date}</Text>
+                                    <Text>Date d'inscription: {customer.customer.creation_date}</Text>
+                                </View>
+                                <View style={styles.card}>
+                                    {/*todo cacher le password*/}
+                                    <Text>mail: {customer.customer.mail}</Text>
+                                    <Text>mots de passe: {customer.customer.password}</Text>
+                                </View>
+                            </>
+                        ) : null}
                     </View>
                 </View>
+                <Button icon="logout-variant" mode="outlined" color="#000" onPress={() => handleLogout()}
+                        title="Déconnexion">
+                    Déconnexion
+                </Button>
             </ScrollView>
         </SafeAreaView>
     );
@@ -74,7 +70,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         width: '100%',
-        marginTop:10
+        marginTop: 10
     },
     card: {
         flex: 1,

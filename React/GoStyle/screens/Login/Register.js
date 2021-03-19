@@ -4,7 +4,7 @@ import {
     View,
     StyleSheet,
     Text,
-    TouchableOpacity, ScrollView, Dimensions,
+    TouchableOpacity, ScrollView, Dimensions, KeyboardAvoidingView,
 } from "react-native";
 import background from "../../assets/images/shopping.jpg"
 import {HelperText, TextInput} from "react-native-paper";
@@ -16,63 +16,83 @@ const windowHeight = Dimensions.get('window').height;
 
 const Screen = ({navigation}) => {
     const [state, setState] = useState({
-        email: "",
-        mdp: "",
         hasError: false,
         errorMessage: "",
     })
-    const handleLogin = () => {
+    const [customer, setCustomer] = useState({
+        first_name: "",
+        last_name: "",
+        mail: "",
+        password: "",
+        birth_date: "",
+    })
+    const handleRegister = () => {
         console.log("login:", state.email, state.mdp)
-        authUser().then(r=>{
-            console.log("auth r =",r)
-            if(r){
-                store.save("customer",JSON.stringify(r))
-            } else{
-                setState({...state,hasError: true, errorMessage:"identifiants invalides"})
+        if (!customer.first_name || !customer.last_name || !customer.mail || !customer.password || !customer.birth_date) {
+            setState({...state, errorMessage: "Tous les champs doivent être remplis", hasError: true})
+        }
+        createCustomer().then(r => {
+            console.log("auth r =", r)
+            if (r) {
+                store.save("customer", JSON.stringify(r))
+            } else {
+                setState({...state, hasError: true, errorMessage: "identifiants invalides"})
             }
         })
             .catch(e => console.log(e.errorMessage))
 
     }
-    const authUser = async () => {
-        return await api.authCustomer({login: state.email, password: state.mdp})
+    const createCustomer = async () => {
+        return await api.createCustomer(customer)
     }
     return (
 
         <ImageBackground source={background} style={styles.image} blurRadius={1}>
             <ScrollView>
-                <View style={{height: windowHeight}}>
-
+                <View style={{height: windowHeight, marginTop: 100}}>
                     <View style={styles.pageSize}>
-                        <View style={styles.sectionView}/>
-
-                        <View style={{...styles.sectionView, flex: 2}}>
-                            <Text style={{...styles.title, color: "#3c92f5"}}>Connexion</Text>
-
-                            <View style={{...styles.sectionView, marginTop: 50}}>
-
+                        <View>
+                            <Text style={{...styles.title, color: "#3c92f5"}}>Créer un compte</Text>
+                            <View style={{marginTop: 50}}>
+                                <TextInput
+                                    label="Nom"
+                                    value={state.last_name}
+                                    mode="outlined"
+                                    onChangeText={text => setCustomer({...customer, last_name: text})}
+                                />
+                                <TextInput
+                                    label="Prénom"
+                                    value={state.first_name}
+                                    mode="outlined"
+                                    onChangeText={text => setCustomer({...customer, first_name: text})}
+                                />
                                 <TextInput
                                     label="Email"
                                     value={state.email}
                                     mode="outlined"
-                                    onChangeText={text => setState({...state, email: text})}
+                                    onChangeText={text => setCustomer({...customer, email: text})}
                                 />
                                 <TextInput
                                     label="Mot de passe"
-                                    value={state.mdp}
+                                    value={state.password}
                                     mode="outlined"
-                                    onChangeText={text => setState({...state, mdp: text})}
+                                    onChangeText={text => setCustomer({...customer, password: text})}
+                                />
+                                <TextInput
+                                    label="Date de naissance"
+                                    value={state.birth_date}
+                                    mode="outlined"
+                                    onChangeText={text => setCustomer({...customer, birth_date: text})}
                                 />
                                 <HelperText type="error" visible={state.hasError}>
                                     {state.errorMessage}
                                 </HelperText>
                             </View>
-
                         </View>
-
-                        <View style={{...styles.sectionView, flex: 2}}>
+                        <View>
                             <View>
-                                <TouchableOpacity style={styles.button} onPress={() => handleLogin()}
+                                <TouchableOpacity style={styles.button}
+                                                  onPress={() => navigation.navigate('Login')}
                                                   title="Login">
                                     <View>
                                         <Text>Se connecter</Text>
@@ -81,7 +101,7 @@ const Screen = ({navigation}) => {
                             </View>
                             <View>
                                 <TouchableOpacity style={styles.blueButton}
-                                                  onPress={() => navigation.navigate('Register')}
+                                                  onPress={() => handleRegister()}
                                                   title="Register">
                                     <View>
                                         <Text>S'enregistrer</Text>
@@ -99,8 +119,10 @@ const Screen = ({navigation}) => {
 const styles = StyleSheet.create({
     sectionView: {
         flex: 1,
-        width: "100%"
-        // backgroundColor: "#eaeaea"
+        width: "100%",
+        borderColor: "#cf00ff",
+        borderStyle: 'solid',
+        borderWidth: 1,
 
     },
     image: {

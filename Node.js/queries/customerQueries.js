@@ -24,11 +24,11 @@ export const getCustomerById = (request, response) => {
 }
 export const getCustomersCoupons = (request, response) => {
     const id = request.params.id;
-    db('SELECT c.* from coupon c join customer_coupon cc on c.id = cc.id_coupon WHERE cc.id_customer = $1', [id], (error, results) => {
+    db('SELECT c.*,cc.used from coupon c join customer_coupon cc on c.id = cc.id_coupon WHERE cc.id_customer = $1', [id], (error, results) => {
         if (error) {
             response.status(404).json({ error });
         }
-        console.log(`result rows = ${results.rows}`)
+        // console.log(`result rows = ${results.rows}`)
         return response.status(200).json(results.rows)
     })
 }
@@ -73,9 +73,9 @@ export const addCoupon = (request, response) => {
     const {id_coupon} = request.body
     db('INSERT INTO customer_coupon (id_customer, id_coupon, used) values ($1,$2,0)', [id,id_coupon],(error, results) => {
         if (error) {
-            return response.status(400).json({ error });
+            return response.status(400).json({ error, "status":"400" });
         }
-        return response.status(200).send(`Coupon added`)
+        return response.status(200).json({"message":"Coupon added","status":"200"})
     })
 }
 export const addCustomer = (request, response) => {
@@ -86,7 +86,7 @@ export const addCustomer = (request, response) => {
         if (error) {
             return response.status(400).json({ error });
         }
-        return response.status(200).send(`Coupon added`)
+        return response.status(200).send({message:`Customer created`})
     })
 }
 //endregion
