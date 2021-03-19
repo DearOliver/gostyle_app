@@ -1,6 +1,6 @@
   
 import * as React from 'react';
-import { StyleSheet, Button, TouchableOpacity, RefreshControl} from 'react-native';
+import { StyleSheet, Button, TouchableOpacity, RefreshControl, SearchBar } from 'react-native';
 import { withSafeAreaInsets } from 'react-native-safe-area-context';
 import Coupon_Card from '../components/Coupon_Card';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -18,7 +18,7 @@ const wait = timeout => {
 
 export default function HomePage({ navigation }) {
 
-  const [refreshing, setRefreshing] = React.useState(false);
+  const [refreshing, setRefreshing] = useState(false);
 
     const onRefresh = React.useCallback(() => {
         setRefreshing(true);
@@ -28,13 +28,17 @@ export default function HomePage({ navigation }) {
 
     const [coupons, setCoupons] = useState({isOk: false, coupons: []});
     const [customer, setCustomer] = useState({isOk: false, customer: null});
+    const [search, setSearch] = useState({search: ''});
+
+    updateSearch = (text) => {
+      setSearch({ search: text });
+    };
 
     if (customer.isOk === false) {
         Store.getValueFor('customer').then(r => {
-            setCustomer({isOk: true, customer: JSON.parse(r)});
+            setCustomer({isOk: true, customer: JSON.parse(r)})
         })
     }
-
 
     if (coupons.isOk === false && customer.isOk === true) {
         APICoupon.getCoupons()
@@ -52,6 +56,11 @@ export default function HomePage({ navigation }) {
           Mon Profil
         </Text>
       </TouchableOpacity>
+      <SearchBar
+        placeholder="Type Here..."
+        onChangeText={(text) => onChangeSearch(text)}
+        value={search.search}
+      />
       <View style={styles.container}>
         {coupons.isOk ? (
             coupons.coupons.map(function (x) {
