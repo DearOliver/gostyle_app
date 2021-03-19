@@ -1,47 +1,66 @@
   
 import * as React from 'react';
-import { StyleSheet, Button, TouchableOpacity, Modal } from 'react-native';
+import { StyleSheet, Button, TouchableOpacity, RefreshControl} from 'react-native';
 import { withSafeAreaInsets } from 'react-native-safe-area-context';
 import Coupon_Card from '../components/Coupon_Card';
 import { createStackNavigator } from '@react-navigation/stack';
 import ProfilePage from '../screens/ProfilePage';
 import { Text, View, ScrollView } from '../components/Themed';
 import {useState} from "react";
+import * as Store from "../functions/front/store";
+import * as APICoupon from "../functions/back/coupon"
+
+const wait = timeout => {
+  return new Promise(resolve => {
+      setTimeout(resolve, timeout);
+  });
+};
 
 export default function HomePage({ navigation }) {
-  
-  let [isFetch, setIsFetch] = useState(false);
-  let [tableau, setTableau] = useState([]);
 
-  if (tableau.length <= 0) {
-    fetch('http://172.16.18.23:5000/coupon')
-            .then(
-                r => r.json()
-            )
-            .then(
-                function (response) {
-                    setIsFetch(true);
-                    setTableau(response);
-                    return;
+  const [refreshing, setRefreshing] = React.useState(false);
+
+    const onRefresh = React.useCallback(() => {
+        setRefreshing(true);
+        setCoupons({isOk: false, coupons: []})
+        wait(2000).then(() => setRefreshing(false));
+    }, []);
+
+    const [coupons, setCoupons] = useState({isOk: false, coupons: []});
+    const [customer, setCustomer] = useState({isOk: false, customer: null});
+
+    if (customer.isOk === false) {
+        Store.getValueFor('customer').then(r => {
+            setCustomer({isOk: true, customer: JSON.parse(r)});
+        })
+    }
+
+
+    if (coupons.isOk === false && customer.isOk === true) {
+        APICoupon.getCoupons()
+            .then(async r => {
+                if (r) {
+                    setCoupons({isOk: true, coupons: r})
                 }
-            );
-  }
-
-  let current_coupons_views = tableau.map(x => {
-    return (
-      <Coupon_Card key={x.id} coupon={x}/>
-    );
-  });
+            })
+    }
 
   return (
-    <ScrollView style={styles.scroll} lightColor={true} lightColor="#eee" darkColor="rgba(255,255,255,0.1)">
+    <ScrollView style={styles.scroll} lightColor={true} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>}>
       <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ProfilePage')}>
         <Text style={{ fontSize: 20 }}>
           Mon Profil
         </Text>
       </TouchableOpacity>
       <View style={styles.container}>
-        { current_coupons_views }
+        {coupons.isOk ? (
+            coupons.coupons.map(function (x) {
+              return (
+                <Coupon_Card key={x.id} coupon={x}/>
+              );
+          }
+      )
+            ) : (<Text> Aucun coupons </Text>)}
       </View>
     </ScrollView>
   );

@@ -52,7 +52,7 @@ export default function MyList({navigation}) {
                 </View>
                 {coupons.isOk ? (
                     coupons.coupons.map(function (x) {
-                            console.log(x.used)
+                            console.log('used : ', x.used)
                             if (Date.parse(x.end_date) >= Date.now() && x.used === 0) {
                                 return <Coupon_Card_User key={x.id} coupon={x}/>
                             }

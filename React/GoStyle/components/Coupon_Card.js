@@ -6,6 +6,8 @@ import {useState} from "react";
 import Colors from '../constants/Colors';
 import { MonoText } from './StyledText';
 import { Text, View } from './Themed';
+import * as Store from "../functions/front/store";
+import * as APICustomer from "../functions/back/customer"
 import CouponCardPerime from './CouponCardPerime';
 
 const axios = require('axios');
@@ -42,9 +44,15 @@ function get_type(coupon){
 
 
 export default function Coupon_Card({ coupon }) {
-  console.log('Coupon_Card: ', coupon)
   let coupon_type = get_type(coupon);
   let [modalVisible, setModalVisible] = useState(false);
+  const [customer, setCustomer] = useState({isOk: false, customer: null});
+
+  if (customer.isOk === false) {
+    Store.getValueFor('customer').then(r => {
+        setCustomer({isOk: true, customer: JSON.parse(r)});
+    })
+  }
 
   let styles = StyleSheet.create({
     container: {
@@ -146,14 +154,8 @@ export default function Coupon_Card({ coupon }) {
   });
 
   function add_to_customer(coupon){
-    axios
-    .post('http://172.16.18.23:5000/customer/B7B41975-8CA0-A33E-E21E-CB880E099BB0/coupons/add', coupon.id)
-    .then(res => {
-      console.log(`Coupon added : `, coupon.id)
-    })
-    .catch(error => {
-      console.error(error)
-    })
+    console.log('Customer id ', customer.customer.id)
+    APICustomer.addCoupon(customer.customer.id, coupon.id)
 
     setModalVisible(!modalVisible)
   }
