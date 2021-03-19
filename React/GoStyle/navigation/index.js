@@ -32,7 +32,7 @@ export default function Navigation({colorScheme}) {
 const Stack = createStackNavigator();
 
 function RootNavigator() {
-    SplashScreen.preventAutoHideAsync().then(r => r);
+
     const [state, setState] = useState({
         isLoading: true,
         isSignedIn: false
