@@ -178,6 +178,12 @@ export default function Coupon_Card({ coupon }) {
             <View style={styles.porteButton}>
               <TouchableOpacity
                 style={[styles.button, styles.buttonClose]}
+                onPress={() => setModalVisible(!modalVisible)}
+              >
+                <Text style={styles.textStyle}>Annuler</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[styles.button, styles.buttonClose]}
                 onPress={() => add_to_customer(coupon)}
               >
                 <Text style={styles.textStyle}>Ajouter</Text>
