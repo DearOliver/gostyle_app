@@ -1,6 +1,7 @@
   
 import * as React from 'react';
-import { StyleSheet, Button, TouchableOpacity, RefreshControl, SearchBar } from 'react-native';
+import { StyleSheet, Button, TouchableOpacity, RefreshControl } from 'react-native';
+import { Searchbar } from 'react-native-paper';
 import { withSafeAreaInsets } from 'react-native-safe-area-context';
 import Coupon_Card from '../components/Coupon_Card';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -31,7 +32,9 @@ export default function HomePage({ navigation }) {
     const [search, setSearch] = useState({search: ''});
 
     updateSearch = (text) => {
+      console.log('Search Avant : ', search.search);
       setSearch({ search: text });
+      console.log('Search Après : ', search.search);
     };
 
     if (customer.isOk === false) {
@@ -56,19 +59,20 @@ export default function HomePage({ navigation }) {
           Mon Profil
         </Text>
       </TouchableOpacity>
-      <SearchBar
-        placeholder="Type Here..."
-        onChangeText={(text) => onChangeSearch(text)}
-        value={search.search}
-      />
       <View style={styles.container}>
+        <Searchbar style={{width: '90%', marginTop: 10 }}
+          placeholder="Rechercher ..."
+          onChangeText={(text) => updateSearch(text)}
+          onClear={(text) => updateSearch('')}
+          value={search.search}
+        />
         {coupons.isOk ? (
             coupons.coupons.map(function (x) {
               return (
                 <Coupon_Card key={x.id} coupon={x}/>
               );
           }
-      )
+       )
             ) : (<Text> Aucun coupons </Text>)}
       </View>
     </ScrollView>
