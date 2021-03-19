@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {StyleSheet, RefreshControl} from 'react-native';
+import {StyleSheet, RefreshControl } from 'react-native';
 
 import {ScrollView, Text, View} from '../components/Themed';
 import CouponCardPerime from "../components/CouponCardPerime";

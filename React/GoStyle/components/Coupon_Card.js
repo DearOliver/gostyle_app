@@ -1,6 +1,6 @@
 import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
-import { StyleSheet, TouchableOpacity, Modal, Pressable } from 'react-native';
+import { StyleSheet, TouchableOpacity, Modal, Alert} from 'react-native';
 
 import {useState} from "react";
 import Colors from '../constants/Colors';
@@ -47,11 +47,21 @@ export default function Coupon_Card({ coupon }) {
   let coupon_type = get_type(coupon);
   let [modalVisible, setModalVisible] = useState(false);
   const [customer, setCustomer] = useState({isOk: false, customer: null});
+  const [customerCoupons, setCustomerCoupons] = useState({isOk: false, customerCoupons: []});
 
   if (customer.isOk === false) {
     Store.getValueFor('customer').then(r => {
         setCustomer({isOk: true, customer: JSON.parse(r)});
     })
+  }
+
+  if (customerCoupons.isOk === false && customer.isOk === true) {
+    APICustomer.getCustomerCoupons(customer.customer.id)
+        .then(async r => {
+            if (r) {
+                setCustomerCoupons({isOk: true, customerCoupons: r})
+            }
+        })
   }
 
   let styles = StyleSheet.create({
@@ -154,10 +164,28 @@ export default function Coupon_Card({ coupon }) {
   });
 
   function add_to_customer(coupon){
-    console.log('Customer id ', customer.customer.id)
-    APICustomer.addCoupon(customer.customer.id, coupon.id)
 
-    setModalVisible(!modalVisible)
+    let is_found = false;
+
+    customerCoupons.customerCoupons.map(function(x) {
+
+      if (x.id == coupon.id){
+        is_found = true;
+      }
+
+    })
+
+    if (is_found == true){
+      setModalVisible(!modalVisible);
+      Alert.alert("Vous avez déjà ce coupon !"); 
+    }
+
+    else{
+      APICustomer.addCoupon(customer.customer.id, coupon.id);
+      setModalVisible(!modalVisible);
+      Alert.alert("Coupon ajouté !");
+    }
+
   }
 
   return (
