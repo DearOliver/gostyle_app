@@ -9,42 +9,15 @@ import { Text, View } from './Themed';
 import * as Store from "../functions/front/store";
 import * as APICustomer from "../functions/back/customer"
 import CouponCardPerime from './CouponCardPerime';
+import * as Utils from "../functions/utils"
 
-const axios = require('axios');
 
-class type {
 
-  id
-  label
-  color
 
-  constructor(id, label,color)
-  {
-    this.id = id;
-    this.label = label;
-    this.color = color;
-  }
-}
 
-let t1 = new type(0, 'Rabais', '#4355d4')
-let t2 = new type(1, 'Réduction', '#749eff')
-let t3 = new type(2, 'Pack', '#c6ceff')
-
-let types = [t1, t2, t3]
-
-function get_type(coupon){
-  let type_found = null;
-  types.forEach(t => {
-    if(coupon.id_type == t.id){
-      type_found = t;
-    }
-  });
-  return type_found;
-}
 
 
 export default function Coupon_Card({ coupon }) {
-  let coupon_type = get_type(coupon);
   let [modalVisible, setModalVisible] = useState(false);
   const [customer, setCustomer] = useState({isOk: false, customer: null});
   const [customerCoupons, setCustomerCoupons] = useState({isOk: false, customerCoupons: []});
@@ -77,9 +50,9 @@ export default function Coupon_Card({ coupon }) {
       padding: 20,
       justifyContent: 'center',
       backgroundColor: '#FFFFFF',
-      borderBottomColor: coupon_type.color,
+      borderBottomColor: coupon.color,
       width: '90%',
-      height: 150,
+      // height: 150,
       borderBottomWidth: 7,
       marginVertical: 15,
       shadowColor: '#000000',
@@ -177,7 +150,7 @@ export default function Coupon_Card({ coupon }) {
 
     if (is_found == true){
       setModalVisible(!modalVisible);
-      Alert.alert("Vous avez déjà ce coupon !"); 
+      Alert.alert("Vous avez déjà ce coupon !");
     }
 
     else{
@@ -192,7 +165,7 @@ export default function Coupon_Card({ coupon }) {
     <View lightColor={true} style={styles.container}>
       <TouchableOpacity style={styles.card} onPress={() => setModalVisible(true)}>
         <Text style={styles.label}>{ coupon.label }</Text>
-        <Text style={styles.date}>Ends on { coupon.start_date }</Text>
+        <Text style={styles.date}>Ends on {Utils.USER_DATE(coupon.start_date) }</Text>
         <Text style={styles.description}>Utilisable sur le magasin en ligne et dans tous les magasins participants</Text>
         <Modal style={{backgroundColor: '#191919'}}
         animationType="slide"

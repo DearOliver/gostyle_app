@@ -1,4 +1,4 @@
-import * as API from './utils'
+import * as API from '../utils'
 
 
 /**
@@ -21,6 +21,18 @@ export const getCoupons = () => {
 export const getCouponById = (id) => {
 
     return fetch(`${API.URL_COUPON}/${id}`)
+        .then(r => r.json())
+        .then(r => r)
+        .catch(e => console.log(e))
+}
+
+/**
+ * récupère la liste des types
+ * renvoie un tableau avec la liste des éléments (les types)
+ */
+export const getTypes = () => {
+
+    return fetch(`${API.URL_COUPON}/types`)
         .then(r => r.json())
         .then(r => r)
         .catch(e => console.log(e))

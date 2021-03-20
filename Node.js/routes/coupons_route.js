@@ -91,6 +91,27 @@ router.get('/',(req, res)=> {
     return db.GetCoupon(req, res)
 })
 
+
+/**
+ * @swagger
+ * /coupon/types:
+ *   get:
+ *     summary: Get all Types
+ *     tags: [Coupon Type]
+ *     responses:
+ *       200:
+ *         description: Returns a list of types
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Coupon Type'
+ *       404:
+ *         description: Some server error
+ */
+router.get('/types',(req, res)=>{
+    return db.GetTypes(req,res)
+})
+
 /**
  * @swagger
  * /coupon/{id}:
@@ -113,7 +134,9 @@ router.get('/',(req, res)=> {
  *         description: Some server error
  */
 router.get('/:id',(req, res)=>{
+    console.log('totoid')
     return db.GetCouponById(req,res)
 })
+
 
 export default router

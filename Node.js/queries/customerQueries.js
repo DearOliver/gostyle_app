@@ -24,7 +24,7 @@ export const getCustomerById = (request, response) => {
 }
 export const getCustomersCoupons = (request, response) => {
     const id = request.params.id;
-    db('SELECT c.*,cc.used from coupon c join customer_coupon cc on c.id = cc.id_coupon WHERE cc.id_customer = $1', [id], (error, results) => {
+    db('SELECT c.*, cc.used,t.color from coupon c join customer_coupon cc on c.id = cc.id_coupon join public.type t on c.id_type=t.id WHERE cc.id_customer = $1', [id], (error, results) => {
         if (error) {
             response.status(404).json({ error });
         }
