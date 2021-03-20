@@ -9,6 +9,7 @@ import { Text, View } from './Themed';
 import * as Store from "../functions/front/store";
 import * as APICustomer from "../functions/back/customer"
 import CouponCardPerime from './CouponCardPerime';
+import * as Utils from "../functions/utils"
 
 
 
@@ -51,7 +52,7 @@ export default function Coupon_Card({ coupon }) {
       backgroundColor: '#FFFFFF',
       borderBottomColor: coupon.color,
       width: '90%',
-      height: 150,
+      // height: 150,
       borderBottomWidth: 7,
       marginVertical: 15,
       shadowColor: '#000000',
@@ -164,7 +165,7 @@ export default function Coupon_Card({ coupon }) {
     <View lightColor={true} style={styles.container}>
       <TouchableOpacity style={styles.card} onPress={() => setModalVisible(true)}>
         <Text style={styles.label}>{ coupon.label }</Text>
-        <Text style={styles.date}>Ends on { coupon.start_date }</Text>
+        <Text style={styles.date}>Ends on {Utils.USER_DATE(coupon.start_date) }</Text>
         <Text style={styles.description}>Utilisable sur le magasin en ligne et dans tous les magasins participants</Text>
         <Modal style={{backgroundColor: '#191919'}}
         animationType="slide"

@@ -4,6 +4,7 @@ import {Text, View, ScrollView} from '../components/Themed';
 import {useState} from "react";
 import * as Store from "../functions/front/store"
 import {Button} from "react-native-paper";
+import * as Utils from "../functions/utils"
 
 
 export default function ProfilePage() {
@@ -38,8 +39,8 @@ export default function ProfilePage() {
                         {customer.isOk ? (
                             <>
                                 <View style={styles.card}>
-                                    <Text>Date de naissance: {customer.customer.birth_date}</Text>
-                                    <Text>Date d'inscription: {customer.customer.creation_date}</Text>
+                                    <Text>Date de naissance: {Utils.USER_DATE(customer.customer.birth_date)}</Text>
+                                    <Text>Date d'inscription: {Utils.USER_DATE(customer.customer.creation_date)}</Text>
                                 </View>
                                 <View style={styles.card}>
                                     {/*todo cacher le password*/}
