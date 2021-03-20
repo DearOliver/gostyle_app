@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useRef, useState} from "react";
 import {
     ImageBackground,
     View,
@@ -8,8 +8,11 @@ import {
 } from "react-native";
 import background from "../../assets/images/shopping.jpg"
 import {HelperText, TextInput} from "react-native-paper";
+import DateTimePicker from '@react-native-community/datetimepicker';
+import moment from "moment";
 import * as api from "../../functions/back/customer"
 import * as store from "../../functions/front/store"
+import * as util from "../../functions/utils"
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -18,6 +21,9 @@ const Screen = ({navigation}) => {
     const [state, setState] = useState({
         hasError: false,
         errorMessage: "",
+        showDatePicker: false,
+        datePickerDate: new Date(),
+        formatedDate: ""
     })
     const [customer, setCustomer] = useState({
         first_name: "",
@@ -26,15 +32,24 @@ const Screen = ({navigation}) => {
         password: "",
         birth_date: "",
     })
+    const inputRef = useRef(null);
+    const handleChange = (e,newDate)=>{
+        moment.locale('fr')
+        const sql_date = moment(newDate).format('YYYY-MM-DD')
+        const formated_date = moment(newDate).format('DD MMM YYYY')
+        inputRef.current.blur();
+        setState({...state, showDatePicker: Platform.OS === 'ios', formatedDate: formated_date, datePickerDate: newDate});
+        setCustomer({...customer, birth_date: sql_date})
+    }
     const handleRegister = () => {
-        console.log("login:", state.email, state.mdp)
+        console.log("login:",customer)
         if (!customer.first_name || !customer.last_name || !customer.mail || !customer.password || !customer.birth_date) {
             setState({...state, errorMessage: "Tous les champs doivent être remplis", hasError: true})
         }
         createCustomer().then(r => {
             console.log("auth r =", r)
             if (r) {
-                store.save("customer", JSON.stringify(r))
+                store.save("customer", JSON.stringify({...customer, creation_date: util.SQL_DATE()}))
             } else {
                 setState({...state, hasError: true, errorMessage: "identifiants invalides"})
             }
@@ -68,9 +83,9 @@ const Screen = ({navigation}) => {
                                 />
                                 <TextInput
                                     label="Email"
-                                    value={state.email}
+                                    value={state.mail}
                                     mode="outlined"
-                                    onChangeText={text => setCustomer({...customer, email: text})}
+                                    onChangeText={text => setCustomer({...customer, mail: text})}
                                 />
                                 <TextInput
                                     label="Mot de passe"
@@ -79,11 +94,21 @@ const Screen = ({navigation}) => {
                                     onChangeText={text => setCustomer({...customer, password: text})}
                                 />
                                 <TextInput
+                                    ref={inputRef}
                                     label="Date de naissance"
-                                    value={state.birth_date}
+                                    value={state.formatedDate}
                                     mode="outlined"
-                                    onChangeText={text => setCustomer({...customer, birth_date: text})}
+                                    onFocus={()=>setState({...state, showDatePicker: true})}
                                 />
+                                {state.showDatePicker &&
+                                <DateTimePicker
+                                    testID="dateTimePicker"
+                                    value={state.datePickerDate}
+                                    mode="date"
+                                    display="spinner"
+                                    onChange={(e, newDate) => handleChange(e,newDate)}
+                                />
+                                }
                                 <HelperText type="error" visible={state.hasError}>
                                     {state.errorMessage}
                                 </HelperText>

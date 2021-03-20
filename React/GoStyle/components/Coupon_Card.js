@@ -10,8 +10,6 @@ import * as Store from "../functions/front/store";
 import * as APICustomer from "../functions/back/customer"
 import CouponCardPerime from './CouponCardPerime';
 
-const axios = require('axios');
-
 class type {
 
   id
@@ -177,7 +175,7 @@ export default function Coupon_Card({ coupon }) {
 
     if (is_found == true){
       setModalVisible(!modalVisible);
-      Alert.alert("Vous avez déjà ce coupon !"); 
+      Alert.alert("Vous avez déjà ce coupon !");
     }
 
     else{

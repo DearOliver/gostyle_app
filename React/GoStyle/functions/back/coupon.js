@@ -1,4 +1,4 @@
-import * as API from './utils'
+import * as API from '../utils'
 
 
 /**
