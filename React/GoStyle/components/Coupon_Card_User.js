@@ -6,38 +6,11 @@ import Colors from '../constants/Colors';
 import { MonoText } from './StyledText';
 import { Text, View } from './Themed';
 
-class type {
 
-  id
-  label
-  color
 
-  constructor(id, label,color)
-  {
-      this.id = id;
-      this.label = label;
-      this.color = color;
-  }
-}
 
-let t1 = new type(0, 'Rabais', '#4355d4')
-let t2 = new type(1, 'Réduction', '#749eff')
-let t3 = new type(2, 'Pack', '#c6ceff')
-
-let types = [t1, t2, t3]
-
-function get_type(coupon){
-  let type_found = null;
-  types.forEach(t => {
-    if(coupon.id_type == t.id){
-      type_found = t;
-    }
-  });
-  return type_found;
-}
 
 export default function Coupon_Card_User({coupon}) {
-  let coupon_type = get_type(coupon);
 
   let styles = StyleSheet.create({
     container: {
@@ -52,7 +25,7 @@ export default function Coupon_Card_User({coupon}) {
       padding: 20,
       justifyContent: 'center',
       backgroundColor: '#FFFFFF',
-      borderBottomColor: coupon_type.color,
+      borderBottomColor: coupon.color,
       width: '90%',
       height: 150,
       borderBottomWidth: 7,
