@@ -32,9 +32,19 @@ export default function HomePage({ navigation }) {
     const [search, setSearch] = useState({search: ''});
 
     updateSearch = (text) => {
-      console.log('Search Avant : ', search.search);
       setSearch({ search: text });
-      console.log('Search Après : ', search.search);
+
+      let tab = [];
+
+      coupons.coupons.map(function (x) {
+        if(x.label){
+          if(x.label.includes(search.search)){
+            tab.push(x);
+          }
+        }
+      })
+
+      setCoupons({isOk: true, coupons: tab})
     };
 
     if (customer.isOk === false) {
