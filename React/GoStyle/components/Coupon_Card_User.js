@@ -5,6 +5,7 @@ import { StyleSheet, TouchableOpacity } from 'react-native';
 import Colors from '../constants/Colors';
 import { MonoText } from './StyledText';
 import { Text, View } from './Themed';
+import * as Utils from "../functions/utils"
 
 
 
@@ -27,7 +28,7 @@ export default function Coupon_Card_User({coupon}) {
       backgroundColor: '#FFFFFF',
       borderBottomColor: coupon.color,
       width: '90%',
-      height: 150,
+      // height: 150,
       borderBottomWidth: 7,
       marginVertical: 15,
       borderRadius: 3,
@@ -63,7 +64,7 @@ export default function Coupon_Card_User({coupon}) {
       <View style={styles.card}>
         <Text style={styles.code}>{ coupon.code }</Text>
         <Text style={styles.label}>{ coupon.label }</Text>
-        <Text style={styles.date}>Ends on { coupon.end_date }</Text>
+        <Text style={styles.date}>Ends on {Utils.USER_DATE(coupon.end_date)}</Text>
         <Text style={styles.description}>Utilisable sur le magasin en ligne et dans tous les magasins participants</Text>
       </View>
     </View>
