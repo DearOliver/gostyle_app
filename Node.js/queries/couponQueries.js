@@ -5,11 +5,13 @@ import db from "../config/Postgres/db.js"
 export const GetCouponById = (request, response) => {
     const id = request.params.id;
     db('SELECT c.*,t.color FROM  coupon c join public.type t on c.id_type=t.id where c.id = $1', [id], (error, results) => {
-        if (error) {
-            response.status(404).json({error});
+        if(results.rowCount > 0){
+            return response.status(200).json(results.rows)
         }
-        // console.log(results.rows)
-        return response.status(200).json(results.rows)
+        if (error) {
+            return response.status(404).json({ error });
+        }
+        return response.sendStatus(404)
     })
 }
 

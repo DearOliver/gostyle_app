@@ -109,7 +109,7 @@ router.get('/list', (req, res) => {
  *       400:
  *         description: No customer found
  */
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
     return db.getCustomerById(req, res)
 })
 

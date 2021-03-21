@@ -18,3 +18,5 @@ express_server.use('/docs', swaggerUi.serve, swaggerUi.setup(options, {explorer:
 
 express_server.use('/customer', customers)
 express_server.use('/coupon', coupons);
+
+export default express_server

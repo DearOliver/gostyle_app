@@ -134,7 +134,6 @@ router.get('/types',(req, res)=>{
  *         description: Some server error
  */
 router.get('/:id',(req, res)=>{
-    console.log('totoid')
     return db.GetCouponById(req,res)
 })
 

@@ -4,32 +4,38 @@ import { v4 as uuidv4 } from 'uuid';
 //region Get
 export const getAllCustomers = (request, response) => {
     db('SELECT * FROM customer ORDER BY id ASC', [],(error, results) => {
-        if (error) {
-            response.status(404).json({ error });
+        if(results.rowCount > 0){
+            return response.status(200).json(results.rows)
         }
-        console.log(results.rows)
-        return response.status(200).json(results.rows)
+        if (error) {
+            return response.status(404).json({ error });
+        }
+        return response.sendStatus(404)
     })
 }
 
 export const getCustomerById = (request, response) => {
     const id = request.params.id;
     db('SELECT * FROM customer WHERE id = $1', [id], (error, results) => {
-        if (error) {
-            response.status(404).json({ error });
+        if(results.rowCount > 0){
+            return response.status(200).json(results.rows)
         }
-        console.log(results.rows)
-        return response.status(200).json(results.rows)
+        if (error) {
+            return response.status(404).json({ error });
+        }
+         return response.sendStatus(404)
     })
 }
 export const getCustomersCoupons = (request, response) => {
     const id = request.params.id;
     db('SELECT c.*, cc.used,t.color from coupon c join customer_coupon cc on c.id = cc.id_coupon join public.type t on c.id_type=t.id WHERE cc.id_customer = $1', [id], (error, results) => {
-        if (error) {
-            response.status(404).json({ error });
+        if(results.rowCount > 0){
+            return response.status(200).json(results.rows)
         }
-        // console.log(`result rows = ${results.rows}`)
-        return response.status(200).json(results.rows)
+        if (error) {
+            return response.status(404).json({ error });
+        }
+        return response.sendStatus(404)
     })
 }
 //endregion
@@ -54,7 +60,7 @@ export const updateCustomer = (request, response) => {
 //region POST
 export const authUser = (request, response) => {
     const {login,password} = request.body
-    console.log(request)
+    console.log(request.body)
     db('SELECT * FROM customer WHERE mail = $1 AND password = $2', [login,password],(error, results) => {
         if (error) {
             return response.status(400).json( {error : error} );
@@ -69,6 +75,7 @@ export const authUser = (request, response) => {
     })
 }
 export const addCoupon = (request, response) => {
+    console.log("body=",request.body)
     const {id} = request.params
     const {id_coupon} = request.body
     db('INSERT INTO customer_coupon (id_customer, id_coupon, used) values ($1,$2,0)', [id,id_coupon],(error, results) => {

@@ -1,0 +1,167 @@
+[
+  {
+    "id": "AF9B0B0C-B374-C672-AE0B-5165B7F8249B",
+    "label": "Sed dictum. Proin eget odio. Aliquam",
+    "code": "GWG28JKI4MQ",
+    "start_date": "1990-03-29 05:12:07.000000",
+    "end_date": "2003-05-03 22:26:06.000000",
+    "id_type": 2,
+    "id_customer": "407CE224-641F-152A-6784-86513E00740F",
+    "id_coupon": "AF9B0B0C-B374-C672-AE0B-5165B7F8249B",
+    "used": 0
+  },
+  {
+    "id": "C47D3788-6BE6-8DC2-D933-24A97B539240",
+    "label": "sem, consequat nec, mollis vitae, posuere",
+    "code": "VRF43NDW0LV",
+    "start_date": "1986-04-07 18:26:58.000000",
+    "end_date": "2017-01-22 07:07:10.000000",
+    "id_type": 0,
+    "id_customer": "407CE224-641F-152A-6784-86513E00740F",
+    "id_coupon": "C47D3788-6BE6-8DC2-D933-24A97B539240",
+    "used": 0
+  },
+  {
+    "id": "E13A2F9E-EADA-8A1C-C434-EA12AB1F4D56",
+    "label": "nunc. Quisque ornare tortor at risus. Nunc",
+    "code": "LIP74TYK1MI",
+    "start_date": "1992-05-08 16:36:59.000000",
+    "end_date": "2021-03-31 19:04:16.000000",
+    "id_type": 0,
+    "id_customer": "407CE224-641F-152A-6784-86513E00740F",
+    "id_coupon": "E13A2F9E-EADA-8A1C-C434-EA12AB1F4D56",
+    "used": 0
+  },
+  {
+    "id": "9FFEBEF9-D6D4-0B06-A9AC-41B7B61E8D96",
+    "label": "dolor sit amet, consectetuer adipiscing elit. Curabitur",
+    "code": "HQO44RHD9WR",
+    "start_date": "1976-12-21 20:58:11.000000",
+    "end_date": "2021-04-12 06:30:50.000000",
+    "id_type": 2,
+    "id_customer": "407CE224-641F-152A-6784-86513E00740F",
+    "id_coupon": "9FFEBEF9-D6D4-0B06-A9AC-41B7B61E8D96",
+    "used": 0
+  },
+  {
+    "id": "8F5C81CD-90D8-D3C0-045F-2C2F61087967",
+    "label": "pharetra nibh. Aliquam ornare, libero at auctor",
+    "code": "IYT46IJE9SS",
+    "start_date": "1957-10-29 00:57:04.000000",
+    "end_date": "2021-05-29 11:48:17.000000",
+    "id_type": 2,
+    "id_customer": "407CE224-641F-152A-6784-86513E00740F",
+    "id_coupon": "8F5C81CD-90D8-D3C0-045F-2C2F61087967",
+    "used": 0
+  },
+  {
+    "id": "E5930060-DC8E-93DF-1EEC-CBABE4572755",
+    "label": "per inceptos hymenaeos. Mauris ut quam",
+    "code": "MDJ79QBK4TG",
+    "start_date": "1958-12-31 00:13:14.000000",
+    "end_date": "2021-11-29 00:13:23.000000",
+    "id_type": 2,
+    "id_customer": "407CE224-641F-152A-6784-86513E00740F",
+    "id_coupon": "E5930060-DC8E-93DF-1EEC-CBABE4572755",
+    "used": 0
+  },
+  {
+    "id": "279F6E8A-3314-C0CD-8552-548CDD278B70",
+    "label": "nisl. Quisque fringilla euismod enim. Etiam",
+    "code": "MOG49XAI5MQ",
+    "start_date": "1983-03-04 03:46:18.000000",
+    "end_date": "2021-04-07 03:53:55.000000",
+    "id_type": 1,
+    "id_customer": "407CE224-641F-152A-6784-86513E00740F",
+    "id_coupon": "279F6E8A-3314-C0CD-8552-548CDD278B70",
+    "used": 0
+  },
+  {
+    "id": "90FB990A-316A-8233-E215-A8813A2294A0",
+    "label": "facilisis vitae, orci. Phasellus dapibus",
+    "code": "HXS18BBY7YU",
+    "start_date": "1983-04-22 06:51:49.000000",
+    "end_date": "2021-01-23 06:09:46.000000",
+    "id_type": 2,
+    "id_customer": "407CE224-641F-152A-6784-86513E00740F",
+    "id_coupon": "90FB990A-316A-8233-E215-A8813A2294A0",
+    "used": 0
+  },
+  {
+    "id": "9B1F8A63-E123-9A18-7AA0-71F7AC220F7C",
+    "label": "vitae, erat. Vivamus nisi. Mauris nulla. Integer",
+    "code": "TKV54TBX3DK",
+    "start_date": "1964-06-03 08:50:49.000000",
+    "end_date": "2021-02-11 05:08:27.000000",
+    "id_type": 2,
+    "id_customer": "407CE224-641F-152A-6784-86513E00740F",
+    "id_coupon": "9B1F8A63-E123-9A18-7AA0-71F7AC220F7C",
+    "used": 1
+  },
+  {
+    "id": "5FEC7CEB-BE19-33D3-24CE-B8033B8CA4D1",
+    "label": "Cum sociis natoque penatibus",
+    "code": "UKP45MRF9HN",
+    "start_date": "1961-07-19 03:06:54.000000",
+    "end_date": "2021-09-26 11:49:08.000000",
+    "id_type": 1,
+    "id_customer": "407CE224-641F-152A-6784-86513E00740F",
+    "id_coupon": "5FEC7CEB-BE19-33D3-24CE-B8033B8CA4D1",
+    "used": 1
+  },
+  {
+    "id": "59F1E0DD-E180-5D73-4148-784BAC7FB269",
+    "label": "tincidunt dui augue eu",
+    "code": "SJM58BLN8XR",
+    "start_date": "1981-07-25 11:43:12.000000",
+    "end_date": "2021-04-22 01:52:38.000000",
+    "id_type": 2,
+    "id_customer": "407CE224-641F-152A-6784-86513E00740F",
+    "id_coupon": "59F1E0DD-E180-5D73-4148-784BAC7FB269",
+    "used": 1
+  },
+  {
+    "id": "6E9FB7BE-8022-1422-CE5E-6D356E5ED0C0",
+    "label": "neque sed sem egestas blandit.",
+    "code": "SHZ93EYW8ZP",
+    "start_date": "1985-11-06 19:25:54.000000",
+    "end_date": "2021-05-02 04:24:49.000000",
+    "id_type": 0,
+    "id_customer": "407CE224-641F-152A-6784-86513E00740F",
+    "id_coupon": "6E9FB7BE-8022-1422-CE5E-6D356E5ED0C0",
+    "used": 1
+  },
+  {
+    "id": "98B4D06B-B7EB-B869-2E28-C38BAB37710E",
+    "label": "eu eros. Nam consequat",
+    "code": "KEL16EMJ9QA",
+    "start_date": "1999-08-01 07:09:44.000000",
+    "end_date": "2021-12-10 04:08:56.000000",
+    "id_type": 1,
+    "id_customer": "407CE224-641F-152A-6784-86513E00740F",
+    "id_coupon": "98B4D06B-B7EB-B869-2E28-C38BAB37710E",
+    "used": 0
+  },
+  {
+    "id": "2CEC10AE-682F-BF7B-E00E-1602F6C89F85",
+    "label": "in, hendrerit consectetuer, cursus et, magna.",
+    "code": "UJN72ZIW6PA",
+    "start_date": "1965-09-24 22:19:42.000000",
+    "end_date": "2021-08-11 06:54:03.000000",
+    "id_type": 0,
+    "id_customer": "407CE224-641F-152A-6784-86513E00740F",
+    "id_coupon": "2CEC10AE-682F-BF7B-E00E-1602F6C89F85",
+    "used": 0
+  },
+  {
+    "id": "939D6386-2548-2C95-B6B2-B04DF0519D05",
+    "label": "Proin mi. Aliquam gravida mauris",
+    "code": "SNG68PVC3NF",
+    "start_date": "1965-11-30 05:31:26.000000",
+    "end_date": "2021-05-24 10:22:12.000000",
+    "id_type": 2,
+    "id_customer": "407CE224-641F-152A-6784-86513E00740F",
+    "id_coupon": "939D6386-2548-2C95-B6B2-B04DF0519D05",
+    "used": 1
+  }
+]
